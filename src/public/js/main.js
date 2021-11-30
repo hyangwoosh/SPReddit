@@ -131,4 +131,26 @@ window.addEventListener("DOMContentLoaded", function () {
             alert("Error occurred while updating post");
         })
     };
+
+    //register account
+    var adduser = document.getElementById("registerbutton");
+    adduser.addEventListener("click", function() {
+        // Get the input value from the input field
+        var regusername = document.getElementById("register-username").value;
+        var regpassword = document.getElementById("register-password").value;
+        var regemail = document.getElementById("register-email").value;
+
+        // Send the name to the server via params
+        axios.post('http://localhost:8000/api/users/', {
+                username: regusername,
+                email: regemail,
+                password: regpassword
+        })
+        .then(function (res) {
+            alert(res.data);
+          })
+        .catch(function (err) {
+            console.log(err);
+          })
+    })
 });
