@@ -54,7 +54,7 @@ window.addEventListener("DOMContentLoaded", function () {
                 "<tfoot>" +
                 "<tr>" +
                 "<td>" +
-                "<button id='post-edit-button'>Edit</button>" +
+                "<a href='post.html?post_id=" + data.result[i].post_id + "'><button id='view-post-button'>View post</button></a>" +
                 "</td>" +
                 "</tr>" +
                 "</tfoot>" +
