@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>SP Reddit</title>
+    <link href="../css/main.css" rel="stylesheet" />
+    <script src="../js/userProfile.js" type="text/javascript"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+</head>
+
+<body>
+    <div>
+
+        <h1>SP Reddit</h1>
+
+        <script>
+            var username = sessionStorage.getItem("username");
+            var password = sessionStorage.getItem("password");
+            console.log(username);
+            console.log(password);
+        </script>
+
+        <div>
+
+            <p id="user-name"></p>
+            <br>
+            <p id="user-email"></p>
+            <br>
+            <p id="user-password"></p>
+        </div>
+
+    </div>
+</body>
+
+</html>
