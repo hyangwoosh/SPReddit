@@ -1,24 +1,30 @@
 window.addEventListener("DOMContentLoaded", function () {
 
     //register account
-    var adduser = document.getElementById("registerbutton");
+    var adduser = document.getElementById("registeracc");
     adduser.addEventListener("click", function() {
-        // Get the input value from the input field
+
         var regusername = document.getElementById("register-username").value;
         var regemail = document.getElementById("register-email").value;
         var regpassword = document.getElementById("register-password").value;
 
-        // Send the name to the server via params
-        axios.post('/api/users/', {
+        axios.post('/api/users/register', {
                 username: regusername,
                 email: regemail,
                 password: regpassword
         })
         .then(function (res) {
-            alert(res.data);
+
+            if(res.data.message == "Your account has been created successfully"){
+              window.location.href = "../index.html"
+            }
+            else{
+              alert(res.data.message);
+            }
           })
         .catch(function (err) {
             console.log(err);
           })
     })
+
 });

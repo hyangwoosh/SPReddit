@@ -73,4 +73,5 @@ window.addEventListener("DOMContentLoaded", function () {
         // console.log(error);
         console.log("Error occurred while retrieving comments");
     })
+
 });
