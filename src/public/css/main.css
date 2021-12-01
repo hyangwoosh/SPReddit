@@ -4,6 +4,74 @@
   font-family: 'Roboto', sans-serif;
 }
 
+body {
+  background-color: lightgrey;
+}
+
+h1 {
+  text-align: center;
+  background-color: white;
+  margin-top: 1px;
+  padding-top: 2px;
+  font-size: 50px;
+}
+
+div#user-info {
+  text-align: center;
+  font-size: 35px;
+}
+
+div#nav-buttons {
+  margin-left: 300px;
+}
+
+button#profile-button, button#user-profile-button, button#logoutacc {
+  display: block;
+  width: 380px;
+  margin-top: 10px;
+  padding: 12px;
+  border-radius: 5px;
+  outline: none;
+  color: black;
+  margin-left: 15px;
+  font-size: 20px;
+  display: inline-block;
+}
+
+button#add-post-button{
+  display: block;
+  width: 300px;
+  margin-top: 10px;
+  padding: 12px;
+  border-radius: 5px;
+  outline: none;
+  color: black;
+  margin-left: 50px;
+  font-size: 20px;
+}
+
+div#add-posts{
+  background-color: orange;
+    width: 400px;
+    padding: 50px 65px;
+    border-radius: 8px;
+    box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.40);
+    margin-top: 40px;
+    margin-left: 650px;
+    margin-bottom: 40px;
+}
+
+input {
+  display: block;
+  width: 380px;
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  outline: none;
+  color: black;
+  font-size: 15px;
+}
+
 i {
   font-size: 0.7em;
   color: #747474;
