@@ -21,7 +21,7 @@
       var id = sessionStorage.getItem("id")
       var username = sessionStorage.getItem("username");
       var password = sessionStorage.getItem("password");
-      document.getElementById("user-info").innerHTML = "Welcome: " + username + id;
+      document.getElementById("user-info").innerHTML = "Welcome " + username;
       console.log(username);
       console.log(password);
       if(id == null || username == null){
@@ -30,15 +30,25 @@
       }
     </script>
 
+    <br>
+
     <a href="userProfile.html"><button id="profile-button">Profile</button></a>
 
 <<<<<<< HEAD
     <br>
 
-    <a href='user-profile.html'><button id='user-profile-button'>User Posts and Comments</button></a>
+    <a href='user-posts-comments.html'><button id='user-profile-button'>Posts and Comments</button></a>
 
+<<<<<<< HEAD
 =======
 >>>>>>> 75b4a98 (Jerald - Get user profile)
+=======
+    <br>
+    <br>
+
+    <button id="logoutacc" onclick="window.location.href='../'">Logout</button>
+
+>>>>>>> a54e399 (Yan Bin - Improved get users and update users page + changed some file names)
     <div>
       <h2>Add Post</h2>
       <p>

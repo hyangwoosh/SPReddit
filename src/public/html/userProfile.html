@@ -16,7 +16,7 @@
         <h1>SP Reddit</h1>
 
         <script>
-            var id = sessionStorage.getItem("id")
+            var id = sessionStorage.getItem("id");
             var username = sessionStorage.getItem("username");
             var password = sessionStorage.getItem("password");
             console.log(username);
@@ -27,22 +27,8 @@
             }
         </script>
 
-        <div>
-
-            <p id="user-name"></p>
-            <br>
-            <p id="user-email"></p>
-            <br>
-            <p id="user-password"></p>
-        </div>
-
-        <h3>Edit Your details</h3>
-        <br>
-        <input type="text" id="new-user-name" />
-        <br>
-        <input type="text" id="new-user-email" />
-        <br>
-        <input type="text" id="new-user-password" />
+        <h3>Profile</h3>
+        <div id="current-user"></div>
         <br>
         <button id="update-user-button">Update details</button>
 

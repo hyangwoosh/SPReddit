@@ -19,7 +19,7 @@ window.addEventListener("DOMContentLoaded", function () {
             "</thead>" +
             "<tbody>" +
             "<tr>" +
-            "<td><input type='text' id='current-comment-content' value='" + data.result[0].content + "'></input></td>" +
+            "<td><label>Content: </label><input type='text' id='current-comment-content' value='" + data.result[0].content + "'></input></td>" +
             "</tr>" +
             "</tbody>" +
             "</table>" +

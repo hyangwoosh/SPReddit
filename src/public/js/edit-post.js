@@ -14,12 +14,12 @@ window.addEventListener("DOMContentLoaded", function () {
             "<th id='current-post-id' hidden>" + data.result[0].post_id + "</th>" +
             "</tr>" +
             "<tr>" +
-            "<td><input type='text' id='current-post-title' value='" + data.result[0].title + "'></input></td>" +
+            "<td><label>Title: </label><input type='text' id='current-post-title' value='" + data.result[0].title + "'></input></td>" +
             "</tr>" +
             "</thead>" +
             "<tbody>" +
             "<tr>" +
-            "<td><input type='text' id='current-post-content' value='" + data.result[0].content + "'></input></td>" +
+            "<td><label>Content: </label><input type='text' id='current-post-content' value='" + data.result[0].content + "'></input></td>" +
             "</tr>" +
             "<tr>" +
             "<td id='current-post-created-at'>Created at: " + data.result[0].created_at + "</td>" +

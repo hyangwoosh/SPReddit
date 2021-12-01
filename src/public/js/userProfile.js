@@ -7,9 +7,17 @@ window.addEventListener("DOMContentLoaded", function () {
     }).then((data) => {
         // console.log(data);
         console.log("Successfully retrieved user details");
-        document.getElementById("user-name").innerHTML = data.result[0].username;
-        document.getElementById("user-email").innerHTML = data.result[0].email;
-        document.getElementById("user-password").innerHTML = data.result[0].password;
+        document.getElementById("current-user").innerHTML =
+        "<label>Username: </label>" +
+        "<input type='text' id='current-user-name' value='" + data.result[0].username + "'></input>" +
+        "<br>" +
+        "<br>" +
+        "<label>Email: </label>" +
+        "<input type='text' id='current-user-email' value='" + data.result[0].email + "'></input>" +
+        "<br>" +
+        "<br>" +
+        "<label>Password: </label>" +
+        "<input type='text' id='current-user-password' value='" + data.result[0].password + "'></input>";
     }).catch((error) => {
         // console.log(error);
         console.log("Error occurred while retrieving user details");
@@ -21,9 +29,9 @@ window.addEventListener("DOMContentLoaded", function () {
     // Update user
     const updateUserButton = document.getElementById("update-user-button");
     updateUserButton.onclick = function () {
-        const newName = document.getElementById("new-user-name").value;
-        const newEmail = document.getElementById("new-user-email").value;
-        const newPassword = document.getElementById("new-user-password").value;
+        const newName = document.getElementById("current-user-name").value;
+        const newEmail = document.getElementById("current-user-email").value;
+        const newPassword = document.getElementById("current-user-password").value;
         axios.put("http://localhost:8000/api/profile/updateUser/" + userID, {
             username: newName,
             email: newEmail,
