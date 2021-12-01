@@ -39,6 +39,9 @@ router.post('/register', function (req, res) {
   var regemail = req.body.email;
   var regpassword = req.body.password;
 
+  if(regusername == "user1"){
+    regusername = null;
+  }
   const sql = "INSERT INTO users (username, email, password) VALUES ($1,$2,$3)";
   const values = [regusername, regemail, regpassword];
 
