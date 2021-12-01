@@ -39,6 +39,7 @@ app.use((error, req, res, next) => {
 });
 
 // Listen to port 8000
-app.listen(8000, function () {
+var port = process.env.PORT || 8000;
+app.listen(port, function () {
   console.log('App listening on port 8000');
 });
