@@ -4,6 +4,7 @@ const connection = require('../database/database');
 // Update specific user
 <<<<<<< HEAD
 // GET user profile
+<<<<<<< HEAD
 =======
 // Retrieve specific user profile by ID? (GET)
 >>>>>>> 75b4a98 (Jerald - Get user profile)
@@ -18,6 +19,14 @@ router.get('/getUsers/:username', function (req, res) {
       text: 'SELECT * FROM users WHERE username = $1;',
       values: [username],
 >>>>>>> 75b4a98 (Jerald - Get user profile)
+=======
+router.get('/getUsers/:id', function (req, res) {
+    var id = req.params.id;
+
+    const getUsersQuery = {
+      text: 'SELECT * FROM users WHERE id = $1;',
+      values: [id],
+>>>>>>> 51f718d (Jerald - Update user + changed get user to use id (Yan Bin))
     };
 
     connection.query(getUsersQuery, function (error, result) {
