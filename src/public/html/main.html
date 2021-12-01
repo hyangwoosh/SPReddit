@@ -18,11 +18,16 @@
     <div id="user-info"></div>
 
     <script>
+      var id = sessionStorage.getItem("id")
       var username = sessionStorage.getItem("username");
       var password = sessionStorage.getItem("password");
-      document.getElementById("user-info").innerHTML = "Welcome: " + username;
+      document.getElementById("user-info").innerHTML = "Welcome: " + username + id;
       console.log(username);
       console.log(password);
+      if(id == null || username == null){
+        alert("You do not have access as you have not logged in")
+        window.location.href = "../"
+      }
     </script>
 
     <a href="userProfile.html"><button id="profile-button">Profile</button></a>

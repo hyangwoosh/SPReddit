@@ -8,6 +8,12 @@ window.addEventListener("DOMContentLoaded", function () {
         var regemail = document.getElementById("register-email").value;
         var regpassword = document.getElementById("register-password").value;
 
+        if(regusername == " " || regemail == " " || regpassword == " "){
+          regusername = null
+          regemail = null
+          regpassword = null
+        }
+
         axios.post('/api/users/register', {
                 username: regusername,
                 email: regemail,
@@ -19,7 +25,7 @@ window.addEventListener("DOMContentLoaded", function () {
               window.location.href = "../index.html"
             }
             else{
-              alert(res.data.message);
+              console.log(res.data.message);
             }
           })
         .catch(function (err) {

@@ -9,7 +9,7 @@ router.post('/', function (req, res) {
 
   const addPostQuery = {
     text: 'INSERT INTO posts (creator,title,content) VALUES ($1,$2,$3);',
-    values: [creator,title,content],
+    values: [creator, title, content],
   };
 
   connection.query(addPostQuery, function (error, result) {
@@ -99,7 +99,7 @@ router.put('/:postID', function (req, res) {
 
   const updatePostQuery = {
     text: 'UPDATE posts SET title=$1,content=$2,updated_at=$3 WHERE post_id=$4;',
-    values: [title,content,updated_at,postID],
+    values: [title, content, updated_at, postID],
   };
 
   connection.query(updatePostQuery, function (error, result) {
@@ -163,7 +163,7 @@ router.post('/comments', function (req, res) {
 
   const addCommentQuery = {
     text: 'INSERT INTO post_comments (post_id,creator,content) VALUES ($1,$2,$3);',
-    values: [post_id,creator,content],
+    values: [post_id, creator, content],
   };
 
   connection.query(addCommentQuery, function (error, result) {
@@ -253,7 +253,7 @@ router.put('/comments/:commentID', function (req, res) {
 
   const updateCommentQuery = {
     text: 'UPDATE post_comments SET content=$1 WHERE comment_id=$2;',
-    values: [content,commentID],
+    values: [content, commentID],
   };
 
   connection.query(updateCommentQuery, function (error, result) {

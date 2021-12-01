@@ -16,10 +16,15 @@
         <h1>SP Reddit</h1>
 
         <script>
+            var id = sessionStorage.getItem("id")
             var username = sessionStorage.getItem("username");
             var password = sessionStorage.getItem("password");
             console.log(username);
             console.log(password);
+            if (id == null || username == null) {
+                alert("You do not have access as you have not logged in")
+                window.location.href = "../"
+            }
         </script>
 
         <div>

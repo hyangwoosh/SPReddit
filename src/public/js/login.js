@@ -13,11 +13,12 @@ window.addEventListener("DOMContentLoaded", function () {
         })
         .then(function (res) {
 
-            if(res.data.message == "User does not exist"){
+            if(res.data.message == "Incorrect Credentials"){
                 alert(res.data.message);
             }
             else {
                 window.location.href = "../html/main.html"
+                sessionStorage.setItem("id", res.data.id);
                 sessionStorage.setItem("username", res.data.message);
                 sessionStorage.setItem("password", res.data.password);
             }

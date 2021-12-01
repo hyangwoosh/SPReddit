@@ -1,5 +1,16 @@
 window.addEventListener("DOMContentLoaded", function () {
 
+    //logout
+    var logout = document.getElementById("logoutacc");
+    logout.addEventListener("click", function () {
+
+        window.location.href = "../"
+        sessionStorage.removeItem("id");
+        sessionStorage.removeItem("username");
+        sessionStorage.removeItem("password");
+        
+    })
+
     // Create post
     const addPostButton = document.getElementById("add-post-button");
     addPostButton.onclick = function () {

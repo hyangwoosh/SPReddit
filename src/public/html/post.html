@@ -16,10 +16,15 @@
         <h1>SP Reddit</h1>
 
         <script>
+            var id = sessionStorage.getItem("id")
             var username = sessionStorage.getItem("username");
             var password = sessionStorage.getItem("password");
             console.log(username);
             console.log(password);
+            if (id == null || username == null) {
+                alert("You do not have access as you have not logged in")
+                window.location.href = "../"
+            }
 
             function getUrlVars() {
                 var vars = {};
@@ -45,13 +50,13 @@
         <div>
             <h3>Add Comment</h3>
             <p>
-              <label>Content:</label>
-              <input type="text" id="comment-content" required />
+                <label>Content:</label>
+                <input type="text" id="comment-content" required />
             </p>
             <p>
-              <button id="add-comment-button">Create Comment</button>
+                <button id="add-comment-button">Create Comment</button>
             </p>
-          </div>
+        </div>
 
         <br>
 
