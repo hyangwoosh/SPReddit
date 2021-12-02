@@ -45,6 +45,15 @@ input{
     font-size: 15px;
 }
 
+p#confirmation{
+    text-align: center;
+    font-size: 15px;
+    color: black;
+    width: 380px;
+    padding: 5px 15px;
+    border-radius: 5px;
+}
+
 button{
     display: block;
     width: 380px;

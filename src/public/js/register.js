@@ -1,4 +1,48 @@
 window.addEventListener("DOMContentLoaded", function () {
+  
+  var checkpw = document.getElementById("register-password");
+  checkpw.addEventListener("keyup", function () {
+
+    var checkpassword = document.getElementById("register-password").value;
+    var checkcnfrmpassword = document.getElementById("cnfrm-password").value;
+
+    var confirmation = document.getElementById("confirmation")
+
+    if (checkpassword.length != 0) {
+      if (checkpassword == checkcnfrmpassword) {
+        confirmation.textContent = "Passwords match";
+        confirmation.style.backgroundColor = "#90EE90";
+
+      }
+      else {
+        confirmation.textContent = "Passwords don't match";
+        confirmation.style.backgroundColor = "#FF7276";
+      }
+
+    }
+  })
+
+  var checkpw = document.getElementById("cnfrm-password");
+  checkpw.addEventListener("keyup", function () {
+
+    var checkpassword = document.getElementById("register-password").value;
+    var checkcnfrmpassword = document.getElementById("cnfrm-password").value;
+
+    var confirmation = document.getElementById("confirmation")
+
+    if (checkpassword.length != 0) {
+      if (checkpassword == checkcnfrmpassword) {
+        confirmation.textContent = "Passwords match";
+        confirmation.style.backgroundColor = "#90EE90";
+
+      }
+      else {
+        confirmation.textContent = "Passwords don't match";
+        confirmation.style.backgroundColor = "#FF7276";
+      }
+
+    }
+  })
 
   //register account
   var adduser = document.getElementById("registeracc");
@@ -10,14 +54,12 @@ window.addEventListener("DOMContentLoaded", function () {
 
     if (regusername == "" || regemail == "" || regpassword == "") {
       alert("Please make sure all input values have been filled");
-      window.location.reload;
+      window.location.reload();
     }
     else {
 
-      let password = document.getElementById("register-password").value;
-      let cnfrmpassword = document.getElementById("cnfrm-password").value;
-
-      console.log(password, cnfrmpassword);
+      var password = document.getElementById("register-password").value;
+      var cnfrmpassword = document.getElementById("cnfrm-password").value;
 
       if (password.length != 0) {
         if (password == cnfrmpassword) {
@@ -48,5 +90,7 @@ window.addEventListener("DOMContentLoaded", function () {
     }
 
   })
+
+
 
 });
