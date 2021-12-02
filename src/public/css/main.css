@@ -53,6 +53,7 @@ button#add-post-button{
 div#add-posts{
   background-color: orange;
     width: 400px;
+    margin-top: 200px;
     padding: 50px 65px;
     position: absolute;
     transform: translate(-50%,-50%);
