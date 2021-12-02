@@ -54,11 +54,16 @@ div#add-posts{
   background-color: orange;
     width: 400px;
     padding: 50px 65px;
+    position: absolute;
+    transform: translate(-50%,-50%);
+    left: 50%;
+    top: 50%;
     border-radius: 8px;
     box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.40);
-    margin-top: 40px;
-    margin-left: 650px;
-    margin-bottom: 40px;
+}
+
+div#posts{
+  margin-top: 500px;
 }
 
 input {
