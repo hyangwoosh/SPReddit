@@ -1,5 +1,6 @@
 window.addEventListener("DOMContentLoaded", function () {
   
+  // Check password for password textbox
   var checkpw = document.getElementById("register-password");
   checkpw.addEventListener("keyup", function () {
 
@@ -22,6 +23,7 @@ window.addEventListener("DOMContentLoaded", function () {
     }
   })
 
+  //check password for check confirm password textbox
   var checkpw = document.getElementById("cnfrm-password");
   checkpw.addEventListener("keyup", function () {
 
