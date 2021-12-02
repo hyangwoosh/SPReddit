@@ -43,6 +43,8 @@ window.addEventListener("DOMContentLoaded", function () {
             // console.log(data)
             console.log("Successfully updated profile");
             alert("Successfully updated profile");
+            sessionStorage.setItem("username", newName);
+            sessionStorage.setItem("password", newPassword);
             window.location.reload();
         }).catch((error) => {
             // console.log(error)
