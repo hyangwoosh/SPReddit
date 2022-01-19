@@ -21,11 +21,7 @@
       var id = sessionStorage.getItem("id")
       var username = sessionStorage.getItem("username");
       var password = sessionStorage.getItem("password");
-<<<<<<< HEAD
       document.getElementById("user-info").innerHTML = "Welcome " + username;
-=======
-      document.getElementById("user-info").innerHTML = "Welcome: " + username;
->>>>>>> d44afce (Devin - Validation for register, Added Confirm Password and Added styling for login, register and delete page)
       console.log(username);
       console.log(password);
       if (id == null || username == null) {
@@ -34,33 +30,12 @@
       }
     </script>
 
-    <br>
-
-    <a href="userProfile.html"><button id="profile-button">Profile</button></a>
-
-<<<<<<< HEAD
-    <br>
-
-      <a href='user-posts-comments.html'><button id='user-profile-button'>Posts and Comments</button></a>
-
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 75b4a98 (Jerald - Get user profile)
-=======
-    <br>
-    <br>
-
-    <button id="logoutacc" onclick="window.location.href='../'">Logout</button>
-
->>>>>>> a54e399 (Yan Bin - Improved get users and update users page + changed some file names)
-    <div>
-=======
+    <div id="nav-buttons">
+      <a href="userProfile.html"><button id="profile-button">Profile</button></a>
       <button id="logoutacc" onclick="window.location.href='../'">Logout</button>
     </div>
 
     <div id = "add-posts">
->>>>>>> d10cc48 (Devin - Added styling for main page)
       <h2>Add Post</h2>
       <p>
         <label>Title:</label>
@@ -71,27 +46,10 @@
         <input type="text" id="post-content" required />
       </p>
       <p>
-        <button id="add-post-button">Create Post</button>
+        <button id="add-post-button">Create</button>
       </p>
     </div>
-
     <br>
-
-=======
-    <div id="nav-buttons">
-      <a href="userProfile.html"><button id="profile-button">Profile</button></a>
-      <a href="createPost.html"><button id="create-post-button">Create Post</button></a>
-      <button id="logoutacc" onclick="window.location.href='../'">Logout</button>
-    </div>
-
->>>>>>> 2587f60 (Shine's changes)
-    <div id="posts"></div>
-    
-      
-        <button id="add-post-button">Create Post</button>
-      
-    
-
   </div>
 </body>
 

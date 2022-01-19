@@ -5,6 +5,7 @@
     <meta charset="utf-8" />
     <title>SP Reddit</title>
     <link href="../css/main.css" rel="stylesheet" />
+    <script src="../js/user-posts-comments.js" type="text/javascript"></script>
     <script src="../js/userProfile.js" type="text/javascript"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -13,7 +14,7 @@
 <body>
     <div>
 
-        <h1>SP Reddit</h1>
+        <h1><a style="text-decoration:none" href="main.html">SPReddit</a></h1>
 
         <script>
             var id = sessionStorage.getItem("id");
@@ -27,15 +28,28 @@
             }
         </script>
 
-        <h3>Profile</h3>
-        <div id="current-user"></div>
-        <br>
-        <button id="update-user-button">Update details</button>
+        <div id="nav-buttons">
+            <a href="createPost.html"><button id="create-post-button">Create Post</button></a>
+            <button id="logoutacc" onclick="window.location.href='../'">Logout</button>
+        </div>
 
-        <br>
-        <br>
+        <div class="profDetailsDiv">
+            <h3>Profile</h3>
+            <div id="current-user"></div>
+            <br>
+            <button id="update-user-button">Update details</button>
+    
+            <br>
+            <br>
+            
+            <button id="deleteuser" onclick="window.location.href='delete-user.html'">Delete Account</button>
+        </div>
+
+        <div class="myPostAndCommentFlexbox">
+                <div id="user-posts" class="flex-child Posts"><h3 class="myPageTableTitles">My Posts</h3></div>
+                <div id="user-comments" class="flex-child Comments"><h3 class="myPageTableTitles">My Comments</h3></div>
+        </div>
         
-        <button id="deleteuser" onclick="window.location.href='delete-user.html'">Delete Account</button>
 
     </div>
 </body>

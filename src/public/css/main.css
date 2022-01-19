@@ -25,7 +25,7 @@ div#nav-buttons {
   margin-left: 150px;
 }
 
-button#profile-button, button#user-profile-button, button#logoutacc {
+button#profile-button, button#create-post-button, button#logoutacc {
   display: block;
   width: 380px;
   margin-top: 50px;
@@ -64,7 +64,7 @@ div#add-posts{
 }
 
 div#posts{
-  margin-top: 500px;
+  margin-top: 150px;
 }
 
 input {
@@ -128,4 +128,32 @@ tr:last-child td:first-child {
 
 tr:last-child td:last-child {
   border-bottom-right-radius: 6px;
+}
+
+.myPostAndCommentFlexbox {
+  display: flex;
+  margin-top: 50px;
+  width: 100%;
+}
+
+.flex-child {
+  flex: 1;
+  border: 2px solid black;
+  margin-right: 100px;
+  margin-left: 100px;
+}  
+
+.flex-child:first-child {
+  flex: 1;
+  margin-right: 100px;
+  margin-left: 100px;
+} 
+
+.myPageTableTitles {
+  margin-left: 16px;
+}
+
+.profDetailsDiv {
+  margin-top: 50px;
+  margin-left: 100px;
 }
