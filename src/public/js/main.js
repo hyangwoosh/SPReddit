@@ -159,6 +159,27 @@ window.addEventListener("DOMContentLoaded", function () {
     console.log('Successfully retrieved posts');
     for (let i = 0; i < data.result.length; i++) {
 
+      axios.get('http://localhost:8000/api/posts/likes/post/' + data.result[i].post_id).then((response) => {
+        // console.log(response.data);
+        let totalLikes = 0;
+        if (response.data.result.length == 0) {
+          response.data = 0;
+        } else {
+          for (let i = 0; i < response.data.result.length; i++) {
+            totalLikes += response.data.result[i].action;
+          }
+        }
+        response.data = totalLikes;
+        return response.data;
+      }).then((data) => {
+        // console.log(data);
+        console.log('Successfully retrieved post likes');
+        document.getElementById('post-likes-' + (i + 1) + '').innerHTML = data;
+      }).catch((error) => {
+        // console.log(error);
+        console.log('Error occurred while retrieving post likes');
+      });
+
       document.getElementById('posts').innerHTML +=
         `<table>
         <thead>
@@ -177,141 +198,109 @@ window.addEventListener("DOMContentLoaded", function () {
         </tbody>
         <tfoot>
         <tr>
-        <td>
-        <a href='post.html?post_id=` + data.result[i].post_id + `'><button id='view-post-button'>View post</button></a>
-        </td>
-        </tr>
-        <tr>
         <td>` +
 
-      // Like (+) button
-      `<a onClick="
-
-        axios.get('http://localhost:8000/api/posts/likable/post/' + ` + data.result[i].post_id + `).then((response) => {
-                  return response.data;
-                }).then((data) => {
-                  console.log('Successfully retrieved likable ID');
-
-                  const userID = parseInt(sessionStorage.getItem('id'));
-                  const likableID = data.result[0].likable_id;
-                  const action = 1;
-
-                  axios.post('http://localhost:8000/api/posts/likes', {
-                    user_id: userID,
-                    likable_id: likableID,
-                    action: action,
-                  }).then((response) => {
-                    return response.data;
-                  }).then((data) => {
-                    console.log('Successfully liked post');
-                    window.location.reload();
-                  }).catch((error) => {
-                    console.log('Error occurred while liking post');
-                  });
-
-                }).catch((error) => {
-                  console.log('Error occurred while retrieving likable ID');
-                });
-
-        "><button>+</button></a>` +
-
-      // Number of likes
-      `<p id='post-likes'><script>
+        // Like (+) button
+        `<a onClick="
 
         axios.get('http://localhost:8000/api/posts/likable/post/' + ` + data.result[i].post_id + `).then((response) => {
           return response.data;
+        }).then((data) => {
+          console.log('Successfully retrieved likable ID');
+
+          const userID = parseInt(sessionStorage.getItem('id'));
+          const likableID = data.result[0].likable_id;
+          const action = 1;
+
+          axios.post('http://localhost:8000/api/posts/likes', {
+            user_id: userID,
+            likable_id: likableID,
+            action: action,
+          }).then((response) => {
+            return response.data;
           }).then((data) => {
-            console.log('Successfully retrieved likable ID');
-
-            axios.get('http://localhost:8000/api/posts/likes/' + data.result[0].likable_id).then((response) => {
-              let totalLikes = 0;
-              if (response.data.result.length == 0) {
-                response.data = 0;
-              } else {
-                for (let i = 0; i < response.data.result.length; i++) {
-                  totalLikes += response.data.result[i].action;
-                }
-              }
-              response.data = totalLikes;
-              return response.data;
-            }).then((data) => {
-              console.log('Successfully retrieved post likes');
-              console.log(data);
-              return data;
-            }).catch((error) => {
-              console.log('Error occurred while retrieving post likes');
-            });
-
+            console.log('Successfully liked post');
+            window.location.reload();
           }).catch((error) => {
-            console.log('Error occurred while retrieving likable ID');
+            console.log('Error occurred while liking post');
           });
 
-        </script></p>` +
+        }).catch((error) => {
+          console.log('Error occurred while retrieving likable ID');
+        });
 
-      // Dislike (-) button
-      `<a onClick="
+        "><button id='post-like-button'>+</button></a>` +
+
+        // Number of likes
+        `<div id='post-likes-` + (i + 1) + `'></div>` +
+
+        // Dislike (-) button
+        `<a onClick="
 
         axios.get('http://localhost:8000/api/posts/likable/post/' + ` + data.result[i].post_id + `).then((response) => {
-                  return response.data;
-                }).then((data) => {
-                  console.log('Successfully retrieved likable ID');
+          return response.data;
+        }).then((data) => {
+          console.log('Successfully retrieved likable ID');
 
-                  const userID = parseInt(sessionStorage.getItem('id'));
-                  const likableID = data.result[0].likable_id;
-                  const action = -1;
+          const userID = parseInt(sessionStorage.getItem('id'));
+          const likableID = data.result[0].likable_id;
+          const action = -1;
 
-                  axios.post('http://localhost:8000/api/posts/likes', {
-                    user_id: userID,
-                    likable_id: likableID,
-                    action: action,
-                  }).then((response) => {
-                    return response.data;
-                  }).then((data) => {
-                    console.log('Successfully liked post');
-                    window.location.reload();
-                  }).catch((error) => {
-                    console.log('Error occurred while liking post');
-                  });
+          axios.post('http://localhost:8000/api/posts/likes', {
+            user_id: userID,
+            likable_id: likableID,
+            action: action,
+          }).then((response) => {
+            return response.data;
+          }).then((data) => {
+            console.log('Successfully liked post');
+            window.location.reload();
+          }).catch((error) => {
+            console.log('Error occurred while liking post');
+          });
 
-                }).catch((error) => {
-                  console.log('Error occurred while retrieving likable ID');
-                });
+        }).catch((error) => {
+          console.log('Error occurred while retrieving likable ID');
+        });
 
-        "><button>-</button></a>
+        "><button id='post-dislike-button'>-</button></a>
 
         <br>` +
 
-      // Reset button
-      `<a onClick="
+        // Reset button
+        `<a onClick="
 
         axios.get('http://localhost:8000/api/posts/likable/post/' + ` + data.result[i].post_id + `).then((response) => {
-                  return response.data;
-                }).then((data) => {
-                  console.log('Successfully retrieved likable ID');
+          return response.data;
+        }).then((data) => {
+          console.log('Successfully retrieved likable ID');
 
-                  const userID = parseInt(sessionStorage.getItem('id'));
-                  const likableID = data.result[0].likable_id;
-                  const action = 0;
+          const userID = parseInt(sessionStorage.getItem('id'));
+          const likableID = data.result[0].likable_id;
+          const action = 0;
 
-                  axios.post('http://localhost:8000/api/posts/likes', {
-                    user_id: userID,
-                    likable_id: likableID,
-                    action: action,
-                  }).then((response) => {
-                    return response.data;
-                  }).then((data) => {
-                    console.log('Successfully liked post');
-                    window.location.reload();
-                  }).catch((error) => {
-                    console.log('Error occurred while liking post');
-                  });
+          axios.post('http://localhost:8000/api/posts/likes', {
+            user_id: userID,
+            likable_id: likableID,
+            action: action,
+          }).then((response) => {
+            return response.data;
+          }).then((data) => {
+            console.log('Successfully liked post');
+            window.location.reload();
+          }).catch((error) => {
+            console.log('Error occurred while liking post');
+          });
 
-                }).catch((error) => {
-                  console.log('Error occurred while retrieving likable ID');
-                });
+        }).catch((error) => {
+          console.log('Error occurred while retrieving likable ID');
+        });
 
-        "><button>Reset</button></a>
+        "><button id='post-like-reset-button'>Reset</button></a>
         </td>
+        </tr>
+        <tr>
+        <td><a href='post.html?post_id=` + data.result[i].post_id + `'><button id='view-post-button'>View post</button></a></td>
         </tr>
         </tfoot>
         </table>

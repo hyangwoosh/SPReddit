@@ -530,7 +530,7 @@ router.post('/likes', function (req, res) {
   });
 });
 
-// Retrieve all likes from a specific post/comment
+// Retrieve all likes from a specific post
 router.get('/likes/post/:postID', function (req, res) {
   const postID = req.params.postID;
 
@@ -573,20 +573,56 @@ router.get('/likes/post/:postID', function (req, res) {
           });
         }
       });
-
-      // console.log(result);
-      res.status(200).json({
-        message: 'Retrieved likable ID successfully',
-      });
-    } else {
-      // console.log(error);
-      res.status(404).json({
-        error: 'Likable ID not found',
-      });
     }
   });
 });
 
+// Retrieve all likes from a specific comment
+router.get('/likes/comment/:commentID', function (req, res) {
+  const commentID = req.params.commentID;
+
+  const getLikableByCommentIDQuery = {
+    text: 'SELECT * FROM likable WHERE comment_id=$1;',
+    values: [commentID],
+  };
+
+  connection.query(getLikableByCommentIDQuery, function (error, result) {
+    if (error) {
+      // console.log(error);
+      res.status(500).json({
+        error: 'Error while retrieving likable ID',
+      });
+    } else if (result.rowCount === 1) {
+
+      const likableID = result.rows[0].likable_id;
+
+      const getLikesQuery = {
+        text: 'SELECT * FROM likes WHERE likable_id=$1;',
+        values: [likableID],
+      };
+
+      connection.query(getLikesQuery, function (error, result) {
+        if (error) {
+          // console.log(error);
+          res.status(500).json({
+            error: 'Error while retrieving likes',
+          });
+        } else if (result) {
+          // console.log(result);
+          res.status(200).json({
+            message: 'Retrieved likes successfully',
+            result: result.rows,
+          });
+        } else {
+          // console.log(error);
+          res.status(404).json({
+            error: 'Likes not found',
+          });
+        }
+      });
+    }
+  });
+});
 
 // Retrieve all likes from a specific user
 router.get('/likes/:userID', function (req, res) {

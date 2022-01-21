@@ -187,22 +187,148 @@ window.addEventListener('DOMContentLoaded', function () {
     // console.log(data);
     console.log('Successfully retrieved comments');
     for (let i = 0; i < data.result.length; i++) {
+
+      axios.get('http://localhost:8000/api/posts/likes/comment/' + data.result[i].comment_id).then((response) => {
+        // console.log(response.data);
+        let totalLikes = 0;
+        if (response.data.result.length == 0) {
+          response.data = 0;
+        } else {
+          for (let i = 0; i < response.data.result.length; i++) {
+            totalLikes += response.data.result[i].action;
+          }
+        }
+        response.data = totalLikes;
+        return response.data;
+      }).then((data) => {
+        // console.log(data);
+        console.log('Successfully retrieved comment likes');
+        document.getElementById('comment-likes-' + (i + 1) + '').innerHTML = data;
+      }).catch((error) => {
+        // console.log(error);
+        console.log('Error occurred while retrieving comment likes');
+      });
+
       document.getElementById('comments').innerHTML +=
         `<table>
         <thead>
         <tr>
-        <th id='post-id' hidden>` + data.result[i].comment_id + `</th>
+        <th id='comment-id' hidden>` + data.result[i].comment_id + `</th>
         <th id='post-id' hidden>` + data.result[i].post_id + `</th>
         </tr>
         </thead>
         <tbody>
         <tr>
-        <td id='post-content'>` + data.result[i].content + `</td>
+        <td id='comment-content'>` + data.result[i].content + `</td>
         </tr>
         <tr>
-        <td id='post-creator' style='font-size: 13px'>` + data.result[i].creator + `</td>
+        <td id='comment-creator' style='font-size: 13px'>` + data.result[i].creator + `</td>
         </tr>
         </tbody>
+        <tfoot>
+        <tr>
+        <td>` +
+
+        // Like (+) button
+        `<a onClick="
+
+        axios.get('http://localhost:8000/api/posts/likable/comment/' + ` + data.result[i].comment_id + `).then((response) => {
+          return response.data;
+        }).then((data) => {
+          console.log('Successfully retrieved likable ID');
+
+          const userID = parseInt(sessionStorage.getItem('id'));
+          const likableID = data.result[0].likable_id;
+          const action = 1;
+
+          axios.post('http://localhost:8000/api/posts/likes', {
+            user_id: userID,
+            likable_id: likableID,
+            action: action,
+          }).then((response) => {
+            return response.data;
+          }).then((data) => {
+            console.log('Successfully liked comment');
+            window.location.reload();
+          }).catch((error) => {
+            console.log('Error occurred while liking comment');
+          });
+
+        }).catch((error) => {
+          console.log('Error occurred while retrieving likable ID');
+        });
+
+        "><button id='comment-like-button'>+</button></a>` +
+
+        // Number of likes
+        `<div id='comment-likes-` + (i + 1) + `'></div>` +
+
+        // Dislike (-) button
+        `<a onClick="
+
+        axios.get('http://localhost:8000/api/posts/likable/comment/' + ` + data.result[i].comment_id + `).then((response) => {
+          return response.data;
+        }).then((data) => {
+          console.log('Successfully retrieved likable ID');
+
+          const userID = parseInt(sessionStorage.getItem('id'));
+          const likableID = data.result[0].likable_id;
+          const action = -1;
+
+          axios.post('http://localhost:8000/api/posts/likes', {
+            user_id: userID,
+            likable_id: likableID,
+            action: action,
+          }).then((response) => {
+            return response.data;
+          }).then((data) => {
+            console.log('Successfully liked comment');
+            window.location.reload();
+          }).catch((error) => {
+            console.log('Error occurred while liking comment');
+          });
+
+        }).catch((error) => {
+          console.log('Error occurred while retrieving likable ID');
+        });
+
+        "><button id='comment-dislike-button'>-</button></a>
+
+        <br>` +
+
+        // Reset button
+        `<a onClick="
+
+        axios.get('http://localhost:8000/api/posts/likable/comment/' + ` + data.result[i].comment_id + `).then((response) => {
+          return response.data;
+        }).then((data) => {
+          console.log('Successfully retrieved likable ID');
+
+          const userID = parseInt(sessionStorage.getItem('id'));
+          const likableID = data.result[0].likable_id;
+          const action = 0;
+
+          axios.post('http://localhost:8000/api/posts/likes', {
+            user_id: userID,
+            likable_id: likableID,
+            action: action,
+          }).then((response) => {
+            return response.data;
+          }).then((data) => {
+            console.log('Successfully liked comment');
+            window.location.reload();
+          }).catch((error) => {
+            console.log('Error occurred while liking comment');
+          });
+
+        }).catch((error) => {
+          console.log('Error occurred while retrieving likable ID');
+        });
+
+        "><button id='comment-like-reset-button'>Reset</button></a>
+        </td>
+        </tr>
+        </tfoot>
         </table>
         <br>`;
     };
