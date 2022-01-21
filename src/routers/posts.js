@@ -463,7 +463,7 @@ router.get('/likable/post/:postID', function (req, res) {
       } else {
         // console.log(error);
         res.status(404).json({
-          error: 'Comment not found',
+          error: 'Likable ID not found',
         });
       }
     }
@@ -495,7 +495,7 @@ router.get('/likable/comment/:commentID', function (req, res) {
       } else {
         // console.log(error);
         res.status(404).json({
-          error: 'Comment not found',
+          error: 'Likable ID not found',
         });
       }
     }
