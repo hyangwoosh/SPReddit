@@ -34,7 +34,7 @@ window.addEventListener('DOMContentLoaded', function () {
     // console.log(data);
     console.log('Successfully retrieved post likes');
     document.getElementById('post-likes-amount').innerHTML += data[0];
-    document.getElementById('post-likes-users').innerHTML += data[1];
+    document.getElementById('post-likes-users').innerHTML += 'Rated by ' + data[1] + ' user(s)';
   }).catch((error) => {
     // console.log(error);
     console.log('Error occurred while retrieving post likes');
@@ -206,7 +206,7 @@ window.addEventListener('DOMContentLoaded', function () {
         // console.log(data);
         console.log('Successfully retrieved comment likes');
         document.getElementById('comment-likes-' + (i + 1) + '').innerHTML += data[0];
-        document.getElementById('users-comment-likes-' + (i + 1) + '').innerHTML += data[1];
+        document.getElementById('users-comment-likes-' + (i + 1) + '').innerHTML += 'Rated by ' + data[1] + ' user(s)';
       }).catch((error) => {
         // console.log(error);
         console.log('Error occurred while retrieving comment likes');
@@ -331,7 +331,7 @@ window.addEventListener('DOMContentLoaded', function () {
         "><button id='comment-like-reset-button' style='font-size: 13px'>Reset</button></a>` +
 
         // Number of users that liked
-        `<div id='users-comment-likes-` + (i + 1) + `' style='font-size: 13px'>No. of users liked: </div>` +
+        `<div id='users-comment-likes-` + (i + 1) + `' style='font-size: 13px'></div>` +
 
         `</td>
         </tr>
