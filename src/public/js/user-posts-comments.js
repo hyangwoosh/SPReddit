@@ -14,18 +14,19 @@ window.addEventListener('DOMContentLoaded', function () {
         // console.log(response.data);
         let totalLikes = 0;
         if (response.data.result.length == 0) {
-          response.data = 0;
+          totalLikes = 0;
         } else {
           for (let i = 0; i < response.data.result.length; i++) {
             totalLikes += response.data.result[i].action;
           }
         }
-        response.data = totalLikes;
+        response.data = [totalLikes, response.data.result.length];
         return response.data;
       }).then((data) => {
         // console.log(data);
         console.log('Successfully retrieved post likes');
-        document.getElementById('post-likes-' + (i + 1) + '').innerHTML = data;
+        document.getElementById('post-likes-' + (i + 1) + '').innerHTML = data[0];
+        document.getElementById('users-post-likes-' + (i + 1) + '').innerHTML += data[1];
       }).catch((error) => {
         // console.log(error);
         console.log('Error occurred while retrieving post likes');
@@ -152,8 +153,12 @@ window.addEventListener('DOMContentLoaded', function () {
           console.log('Error occurred while retrieving likable ID');
         });
 
-        "><button id='post-like-reset-button'>Reset</button></a>
-        </td>
+        "><button id='post-like-reset-button'>Reset</button></a>` +
+
+        // Number of users that liked
+        `<div id='users-post-likes-` + (i + 1) + `'>No. of users liked: </div>` +
+
+        `</td>
         </tr>
         <tr>
         <td><a href='edit-post.html?post_id='` + data.result[i].post_id + `'><button id='edit-post-button'>Edit</button></a></td>
@@ -181,18 +186,19 @@ window.addEventListener('DOMContentLoaded', function () {
         // console.log(response.data);
         let totalLikes = 0;
         if (response.data.result.length == 0) {
-          response.data = 0;
+          totalLikes = 0;
         } else {
           for (let i = 0; i < response.data.result.length; i++) {
             totalLikes += response.data.result[i].action;
           }
         }
-        response.data = totalLikes;
+        response.data = [totalLikes, response.data.result.length];
         return response.data;
       }).then((data) => {
         // console.log(data);
         console.log('Successfully retrieved comment likes');
-        document.getElementById('comment-likes-' + (i + 1) + '').innerHTML = data;
+        document.getElementById('comment-likes-' + (i + 1) + '').innerHTML += data[0];
+        document.getElementById('users-comment-likes-' + (i + 1) + '').innerHTML += data[1];
       }).catch((error) => {
         // console.log(error);
         console.log('Error occurred while retrieving comment likes');
@@ -313,8 +319,12 @@ window.addEventListener('DOMContentLoaded', function () {
           console.log('Error occurred while retrieving likable ID');
         });
 
-        "><button id='comment-like-reset-button'>Reset</button></a>
-        </td>
+        "><button id='comment-like-reset-button'>Reset</button></a>` +
+
+        // Number of users that liked
+        `<div id='users-comment-likes-` + (i + 1) + `'>No. of users liked: </div>` +
+
+        `</td>
         </tr>
         <tr>
         <td><a href='edit-comment.html?comment_id='` + data.result[i].comment_id + `'><button id='edit-comment-button'>Edit</button></a></td>
