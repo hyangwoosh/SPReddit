@@ -54,5 +54,9 @@ window.addEventListener("DOMContentLoaded", function () {
       alert('Error occurred while updating profile');
     });
   };
+<<<<<<< HEAD
 });
 >>>>>>> 73b5445 (Likes feature (Unfinished))
+=======
+});
+>>>>>>> 3f850aa (Minor changes)

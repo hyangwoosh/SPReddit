@@ -160,34 +160,34 @@ window.addEventListener("DOMContentLoaded", function () {
     for (let i = 0; i < data.result.length; i++) {
 
       document.getElementById('posts').innerHTML +=
-        '<table>' +
-        '<thead>' +
-        '<tr>' +
-        '<th id=\'post-id\' hidden>' + data.result[i].post_id + '</th>' +
-        '<th id=\'post-title\'>' + data.result[i].title + '</th>' +
-        '</tr>' +
-        '</thead>' +
-        '<tbody>' +
-        '<tr>' +
-        '<td id=\'post-content\'>' + data.result[i].content + '</td>' +
-        '</tr>' +
-        '<tr>' +
-        '<td id=\'post-last-updated\'>Last updated: ' + data.result[i].updated_at + '</td>' +
-        '</tr>' +
-        '</tbody>' +
-        '<tfoot>' +
-        '<tr>' +
-        '<td>' +
-        '<a href=\'post.html?post_id=' + data.result[i].post_id + '\'><button id=\'view-post-button\'>View post</button></a>' +
-        '</td>' +
-        '</tr>' +
-        '<tr>' +
-        '<td>' +
+        `<table>
+        <thead>
+        <tr>
+        <th id='post-id' hidden>` + data.result[i].post_id + `</th>
+        <th id='post-title'>` + data.result[i].title + `</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+        <td id='post-content'>` + data.result[i].content + `</td>
+        </tr>
+        <tr>
+        <td id='post-last-updated'>Last updated: ` + data.result[i].updated_at + `</td>
+        </tr>
+        </tbody>
+        <tfoot>
+        <tr>
+        <td>
+        <a href='post.html?post_id=` + data.result[i].post_id + `'><button id='view-post-button'>View post</button></a>
+        </td>
+        </tr>
+        <tr>
+        <td>`
 
-        // Like (+) button
-        '<a onClick=\'' +
+      // Like (+) button
+      `<a onClick='
 
-        `axios.get("http://localhost:8000/api/posts/likable/post/" + ` + data.result[i].post_id + `).then((response) => {
+        axios.get("http://localhost:8000/api/posts/likable/post/" + ` + data.result[i].post_id + `).then((response) => {
                   return response.data;
                 }).then((data) => {
                   console.log("Successfully retrieved likable ID");
@@ -211,14 +211,14 @@ window.addEventListener("DOMContentLoaded", function () {
 
                 }).catch((error) => {
                   console.log("Error occurred while retrieving likable ID");
-                });` +
+                });
 
-        '\'><button>+</button></a>' +
+        '><button>+</button></a>`
 
-        // Number of likes
-        '<p id=\'post-likes\'><script>' +
+      // Number of likes
+      `<p id='post-likes'><script>
 
-        `axios.get("http://localhost:8000/api/posts/likable/post/" + ` + data.result[i].post_id + `).then((response) => {
+        axios.get("http://localhost:8000/api/posts/likable/post/" + ` + data.result[i].post_id + `).then((response) => {
           return response.data;
           }).then((data) => {
             console.log("Successfully retrieved likable ID");
@@ -244,14 +244,14 @@ window.addEventListener("DOMContentLoaded", function () {
 
           }).catch((error) => {
             console.log("Error occurred while retrieving likable ID");
-          });` +
+          });
 
-        '</script></p>' +
+        </script></p>`
 
-        // Dislike (-) button
-        '<a onClick=\'' +
+      // Dislike (-) button
+      `<a onClick='
 
-        `axios.get("http://localhost:8000/api/posts/likable/post/" + ` + data.result[i].post_id + `).then((response) => {
+        axios.get("http://localhost:8000/api/posts/likable/post/" + ` + data.result[i].post_id + `).then((response) => {
                   return response.data;
                 }).then((data) => {
                   console.log("Successfully retrieved likable ID");
@@ -275,16 +275,16 @@ window.addEventListener("DOMContentLoaded", function () {
 
                 }).catch((error) => {
                   console.log("Error occurred while retrieving likable ID");
-                });` +
+                });
 
-        '\'><button>-</button></a>' +
+        '><button>+</button></a>
 
-        '<br>' +
+        <br>`
 
-        // Reset button
-        '<a onClick=\'' +
+      // Reset button
+      `<a onClick='
 
-        `axios.get("http://localhost:8000/api/posts/likable/post/" + ` + data.result[i].post_id + `).then((response) => {
+        axios.get("http://localhost:8000/api/posts/likable/post/" + ` + data.result[i].post_id + `).then((response) => {
                   return response.data;
                 }).then((data) => {
                   console.log("Successfully retrieved likable ID");
@@ -308,14 +308,14 @@ window.addEventListener("DOMContentLoaded", function () {
 
                 }).catch((error) => {
                   console.log("Error occurred while retrieving likable ID");
-                });` +
+                });
 
-        '\'><button>Reset</button></a>' +
-        '</td>' +
-        '</tr>' +
-        '</tfoot>' +
-        '</table>' +
-        '<br>';
+        '><button>+</button></a>
+        </td>
+        </tr>
+        </tfoot>
+        </table>
+        <br>`;
     };
   }).catch((error) => {
     // console.log(error);

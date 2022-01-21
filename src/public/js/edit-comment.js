@@ -1,4 +1,4 @@
-window.addEventListener('DOMContentLoaded', function() {
+window.addEventListener('DOMContentLoaded', function () {
   // Retrieve specific comment
   const commentID = comment_id;
   axios.get('http://localhost:8000/api/posts/comments/' + commentID).then((response) => {
@@ -7,22 +7,23 @@ window.addEventListener('DOMContentLoaded', function() {
   }).then((data) => {
     // console.log(data);
     console.log('Successfully retrieved comment');
-    document.getElementById('current-comment').innerHTML += '<table>' +
-            '<thead>' +
-            '<tr>' +
-            '<th id=\'user-comment-id\' hidden>' + data.result[0].comment_id + '</th>' +
-            '</tr>' +
-            '<tr>' +
-            '<th id=\'user-post-comment-id\' hidden>' + data.result[0].post_id + '</th>' +
-            '</tr>' +
-            '</thead>' +
-            '<tbody>' +
-            '<tr>' +
-            '<td><label>Content: </label><input type=\'text\' id=\'current-comment-content\' value=\'' + data.result[0].content + '\'></input></td>' +
-            '</tr>' +
-            '</tbody>' +
-            '</table>' +
-            '<br>';
+    document.getElementById('current-comment').innerHTML +=
+      `<table>
+      <thead>
+      <tr>
+      <th id='user-comment-id' hidden>` + data.result[0].comment_id + `</th>
+      </tr>
+      <tr>
+      <th id='user-post-comment-id' hidden>` + data.result[0].post_id + `</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+      <td><label>Content: </label><input type='text' id='current-comment-content' value='` + data.result[0].content + `'></input></td>
+      </tr>
+      </tbody>
+      </table>
+      <br>`;
   }).catch((error) => {
     // console.log(error);
     console.log('Error occurred while retrieving comment');
@@ -30,7 +31,7 @@ window.addEventListener('DOMContentLoaded', function() {
 
   // Update comment
   const updateCommentButton = document.getElementById('update-comment-button');
-  updateCommentButton.onclick = function() {
+  updateCommentButton.onclick = function () {
     const newContent = document.getElementById('current-comment-content').value;
     axios.put('http://localhost:8000/api/posts/comments/' + commentID, {
       content: newContent,
@@ -51,7 +52,7 @@ window.addEventListener('DOMContentLoaded', function() {
 
   // Delete comment
   const deleteCommentButton = document.getElementById('delete-comment-button');
-  deleteCommentButton.onclick = function() {
+  deleteCommentButton.onclick = function () {
     axios.delete('http://localhost:8000/api/posts/comments/' + commentID).then((response) => {
       // console.log(response)
       return response.data;

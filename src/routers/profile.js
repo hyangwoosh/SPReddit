@@ -81,7 +81,23 @@ router.get('/getEmail', function (req, res) {
   };
 
   connection.query(getUsersQuery, function (error, result) {
+<<<<<<< HEAD
       if (error) {
+=======
+    if (error) {
+      // console.log(error);
+      res.status(500).json({
+        error: 'Error while retrieving profile',
+      });
+    } else {
+      if (result) {
+        // console.log(result);
+        res.status(200).json({
+          message: 'Retrieved profile successfully',
+          result: result.rows,
+        });
+      } else {
+>>>>>>> 3f850aa (Minor changes)
         // console.log(error);
         res.status(500).json({
           error: 'Error while retrieving profile'
@@ -105,15 +121,25 @@ router.get('/getEmail', function (req, res) {
   
 // retrieve password
 
+<<<<<<< HEAD
 // update username
 router.put('/:username', function (req, res) {
   var userid = req.params.userid;
+=======
+// Update User Profile Username
+router.put('/updateUser/:id', function (req, res) {
+  const id = req.params.id;
+  const username = req.body.username;
+  const email = req.body.email;
+  const password = req.body.password;
+>>>>>>> 3f850aa (Minor changes)
 
   const updatePostQuery = {
     text: 'UPDATE email SET title=$1, content=$2, updated_at=$3 WHERE post_id=$4;',
     values: [emailID],
   };
 
+<<<<<<< HEAD
 <<<<<<< HEAD
   connection.query(updatePostQuery, function (error, result) {
     if (error) {
@@ -122,6 +148,9 @@ router.put('/:username', function (req, res) {
         error: 'Error while updating post'
 =======
   connection.query(updateUserQuery, function(error, result) {
+=======
+  connection.query(updateUserQuery, function (error, result) {
+>>>>>>> 3f850aa (Minor changes)
     if (error) {
       // console.log(error);
       res.status(500).json({
@@ -153,6 +182,7 @@ router.put('/:username', function (req, res) {
 });
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 // update password
 router.put
 
@@ -160,3 +190,6 @@ router.put
 =======
 >>>>>>> 73b5445 (Likes feature (Unfinished))
 module.exports = router;
+=======
+module.exports = router;
+>>>>>>> 3f850aa (Minor changes)

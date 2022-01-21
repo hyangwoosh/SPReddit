@@ -545,7 +545,6 @@ router.get('/likes/post/:postID', function (req, res) {
       res.status(500).json({
         error: 'Error while retrieving likable ID',
       });
-      console.log("error1");
     } else if (result.rowCount === 1) {
 
       const likableID = result.rows[0].likable_id;
@@ -561,20 +560,17 @@ router.get('/likes/post/:postID', function (req, res) {
           res.status(500).json({
             error: 'Error while retrieving likes',
           });
-          console.log("error2");
         } else if (result) {
           // console.log(result);
           res.status(200).json({
             message: 'Retrieved likes successfully',
             result: result.rows,
           });
-          console.log("result1");
         } else {
           // console.log(error);
           res.status(404).json({
             error: 'Likes not found',
           });
-          console.log("error3");
         }
       });
 
@@ -582,13 +578,11 @@ router.get('/likes/post/:postID', function (req, res) {
       res.status(200).json({
         message: 'Retrieved likable ID successfully',
       });
-      console.log("result2");
     } else {
       // console.log(error);
       res.status(404).json({
         error: 'Likable ID not found',
       });
-      console.log("error4");
     }
   });
 });

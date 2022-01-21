@@ -20,14 +20,14 @@ window.addEventListener('DOMContentLoaded', function () {
   axios.get('http://localhost:8000/api/posts/likes/post/' + postID).then((response) => {
     // console.log(response.data.result);
     let totalLikes = 0;
-      if (response.data.result.length == 0) {
-        response.data = 0;
-      } else {
-        for (let i = 0; i < response.data.result.length; i++) {
-          totalLikes += response.data.result[i].action;
-        }
+    if (response.data.result.length == 0) {
+      response.data = 0;
+    } else {
+      for (let i = 0; i < response.data.result.length; i++) {
+        totalLikes += response.data.result[i].action;
       }
-      response.data = totalLikes;
+    }
+    response.data = totalLikes;
     return response.data;
   }).then((data) => {
     // console.log(data);
@@ -187,23 +187,24 @@ window.addEventListener('DOMContentLoaded', function () {
     // console.log(data);
     console.log('Successfully retrieved comments');
     for (let i = 0; i < data.result.length; i++) {
-      document.getElementById('comments').innerHTML += '<table>' +
-        '<thead>' +
-        '<tr>' +
-        '<th id=\'post-id\' hidden>' + data.result[i].comment_id + '</th>' +
-        '<th id=\'post-id\' hidden>' + data.result[i].post_id + '</th>' +
-        '</tr>' +
-        '</thead>' +
-        '<tbody>' +
-        '<tr>' +
-        '<td id=\'post-content\'>' + data.result[i].content + '</td>' +
-        '</tr>' +
-        '<tr>' +
-        '<td id=\'post-creator\' style=\'font-size: 13px\'>' + data.result[i].creator + '</td>' +
-        '</tr>' +
-        '</tbody>' +
-        '</table>' +
-        '<br>';
+      document.getElementById('comments').innerHTML +=
+        `<table>
+        <thead>
+        <tr>
+        <th id='post-id' hidden>` + data.result[i].comment_id + `</th>
+        <th id='post-id' hidden>` + data.result[i].post_id + `</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+        <td id='post-content'>` + data.result[i].content + `</td>
+        </tr>
+        <tr>
+        <td id='post-creator' style='font-size: 13px'>` + data.result[i].creator + `</td>
+        </tr>
+        </tbody>
+        </table>
+        <br>`;
     };
   }).catch((error) => {
     // console.log(error);

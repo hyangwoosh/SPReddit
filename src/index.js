@@ -26,7 +26,7 @@ app.use('/api', ApiRouter);
 // 404 Handler
 app.use((req, res, next) => {
   next(
-      createHttpErrors(404, `Unknown Resource ${req.method} ${req.originalUrl}`),
+    createHttpErrors(404, `Unknown Resource ${req.method} ${req.originalUrl}`),
   );
 });
 
@@ -40,6 +40,6 @@ app.use((error, req, res, next) => {
 
 // Listen to port 8000
 const port = process.env.PORT || 8000;
-app.listen(port, function() {
+app.listen(port, function () {
   console.log('App listening on port 8000');
 });
