@@ -2,7 +2,6 @@ const router = require('express').Router();
 const connection = require('../database/database');
 
 // login user
-
 router.post('/login', function (req, res) {
   const logemail = req.body.email;
   const logpassword = req.body.password;
@@ -70,11 +69,10 @@ router.delete('/delete', function (req, res) {
   const values = [deletename, deletepw];
 
   connection.query(sql, values, (error, result) => {
-    if (error != null) {
-      if (error) {
-        res.send(error);
-      }
-    } else if (result != null) {
+
+    if (error) {
+      res.send(error);
+    } else {
       if (result.rowCount == 0) {
         res.send({
           'message': `Incorect Credentials`
