@@ -114,30 +114,49 @@ router.put('/:username', function (req, res) {
     values: [emailID],
   };
 
+<<<<<<< HEAD
   connection.query(updatePostQuery, function (error, result) {
     if (error) {
       // console.log(error);
       res.status(500).json({
         error: 'Error while updating post'
+=======
+  connection.query(updateUserQuery, function(error, result) {
+    if (error) {
+      // console.log(error);
+      res.status(500).json({
+        error: 'Error while updating user',
+>>>>>>> 73b5445 (Likes feature (Unfinished))
       });
     } else {
       // console.log(result);
       if (result.rowCount === 1) {
         res.status(200).json({
+<<<<<<< HEAD
           message: 'Updated post successfully'
+=======
+          message: 'Updated user successfully',
+>>>>>>> 73b5445 (Likes feature (Unfinished))
         });
       } else {
         // console.log(error);
         res.status(404).json({
+<<<<<<< HEAD
           error: `Post ID ${postID} not found`
+=======
+          error: `User not found`,
+>>>>>>> 73b5445 (Likes feature (Unfinished))
         });
       }
     }
   });
 });
 
+<<<<<<< HEAD
 // update password
 router.put
 
 >>>>>>> 75b4a98 (Jerald - Get user profile)
+=======
+>>>>>>> 73b5445 (Likes feature (Unfinished))
 module.exports = router;

@@ -5,20 +5,14 @@ window.addEventListener("DOMContentLoaded", function () {
         console.log(response.data);
         return response.data;
     }).then((data) => {
-        // console.log(data);
-        console.log("Successfully retrieved user details");
-        document.getElementById("current-user").innerHTML =
-        "<label>Username: </label>" +
-        "<input type='text' id='current-user-name' value='" + data.result[0].username + "'></input>" +
-        "<br>" +
-        "<br>" +
-        "<label>Email: </label>" +
-        "<input type='text' id='current-user-email' value='" + data.result[0].email + "'></input>" +
-        "<br>" +
-        "<br>" +
-        "<label>Password: </label>" +
-        "<input type='text' id='current-user-password' value='" + data.result[0].password + "'></input>";
+      // console.log(data)
+      console.log('Successfully updated profile');
+      alert('Successfully updated profile');
+      sessionStorage.setItem('username', newName);
+      sessionStorage.setItem('password', newPassword);
+      window.location.reload();
     }).catch((error) => {
+<<<<<<< HEAD
         // console.log(error);
         console.log("Error occurred while retrieving user details");
     })
@@ -54,3 +48,11 @@ window.addEventListener("DOMContentLoaded", function () {
     };
 });
 >>>>>>> 51f718d (Jerald - Update user + changed get user to use id (Yan Bin))
+=======
+      // console.log(error)
+      console.log('Error occurred while updating profile');
+      alert('Error occurred while updating profile');
+    });
+  };
+});
+>>>>>>> 73b5445 (Likes feature (Unfinished))
