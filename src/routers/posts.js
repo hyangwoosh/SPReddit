@@ -19,7 +19,8 @@ router.post('/', function (req, res) {
         error: 'Error while adding post',
       });
     } else {
-      const postID = result[0].post_id;
+
+      const postID = result.rows[0].post_id;
 
       const addLikablePostQuery = {
         text: 'INSERT INTO likable (post_id) VALUES ($1);',
@@ -35,14 +36,9 @@ router.post('/', function (req, res) {
         } else {
           // console.log(result);
           res.status(200).json({
-            message: 'Added likable post object successfully',
+            message: 'Added post successfully',
           });
         }
-      });
-
-      // console.log(result);
-      res.status(200).json({
-        message: 'Added post successfully',
       });
     }
   });
@@ -172,32 +168,6 @@ router.delete('/:postID', function (req, res) {
       }
     }
   });
-
-  const deletePostCommentsQuery = {
-    text: 'DELETE FROM post_comments WHERE post_id=$1;',
-    values: [postID],
-  };
-
-  connection.query(deletePostCommentsQuery, function (error, result) {
-    if (error) {
-      // console.log(error);
-      res.status(400).json({
-        error: 'Error while deleting post comments',
-      });
-    } else {
-      if (result.rowCount === 1) {
-        // console.log(result);
-        res.status(200).json({
-          message: 'Deleted post comments successfully',
-        });
-      } else {
-        // console.log(error);
-        res.status(404).json({
-          error: 'Post commentss not found',
-        });
-      }
-    }
-  });
 });
 
 // Create comment
@@ -218,7 +188,7 @@ router.post('/comments', function (req, res) {
         error: 'Error while adding comment',
       });
     } else {
-      const commentID = result[0].comment_id;
+      const commentID = result.rows[0].comment_id;
 
       const addLikableCommentQuery = {
         text: 'INSERT INTO likable (comment_id) VALUES ($1);',
@@ -234,14 +204,9 @@ router.post('/comments', function (req, res) {
         } else {
           // console.log(result);
           res.status(200).json({
-            message: 'Added likable comment object successfully',
+            message: 'Added comment successfully',
           });
         }
-      });
-
-      // console.log(result);
-      res.status(200).json({
-        message: 'Added comment successfully',
       });
     }
   });
@@ -502,6 +467,66 @@ router.get('/likable/comment/:commentID', function (req, res) {
   });
 });
 
+// Delete likable by Post ID
+router.delete('/likable/post/:postID', function (req, res) {
+  const postID = req.params.postID;
+
+  const deleteLikableByPostIDQuery = {
+    text: 'DELETE FROM likable WHERE post_id=$1;',
+    values: [postID],
+  };
+
+  connection.query(deleteLikableByPostIDQuery, function (error, result) {
+    if (error) {
+      // console.log(error);
+      res.status(500).json({
+        error: 'Error while deleting likable post object',
+      });
+    } else if (result) {
+      // console.log(result);
+      res.status(200).json({
+        message: 'Deleted likable post object successfully',
+        result: result.rows,
+      });
+    } else {
+      // console.log(error);
+      res.status(404).json({
+        error: 'Likable post object not found',
+      });
+    }
+  });
+});
+
+// Delete likable by Comment ID
+router.delete('/likable/comment/:commentID', function (req, res) {
+  const commentID = req.params.commentID;
+
+  const deleteLikableBycommentIDQuery = {
+    text: 'DELETE FROM likable WHERE comment_id=$1;',
+    values: [commentID],
+  };
+
+  connection.query(deleteLikableBycommentIDQuery, function (error, result) {
+    if (error) {
+      // console.log(error);
+      res.status(500).json({
+        error: 'Error while deleting likable comment object',
+      });
+    } else if (result) {
+      // console.log(result);
+      res.status(200).json({
+        message: 'Deleted likable comment object successfully',
+        result: result.rows,
+      });
+    } else {
+      // console.log(error);
+      res.status(404).json({
+        error: 'Likable comment object not found',
+      });
+    }
+  });
+});
+
 // Create/update like object
 router.post('/likes', function (req, res) {
   const user_id = req.body.user_id;
@@ -685,6 +710,36 @@ router.put('/likes', function (req, res) {
           error: 'Likes not found',
         });
       }
+    }
+  });
+});
+
+// Delete all likes
+router.delete('/likes/:likableID', function (req, res) {
+  const likableID = req.params.likableID;
+
+  const deleteLikesQuery = {
+    text: 'DELETE FROM likes WHERE likable_id=$1;',
+    values: [likableID],
+  };
+
+  connection.query(deleteLikesQuery, function (error, result) {
+    if (error) {
+      // console.log(error);
+      res.status(500).json({
+        error: 'Error while deleting likes',
+      });
+    } else if (result) {
+      // console.log(result);
+      res.status(200).json({
+        message: 'Deleted likes successfully',
+        result: result.rows,
+      });
+    } else {
+      // console.log(error);
+      res.status(404).json({
+        error: 'Likes not found',
+      });
     }
   });
 });

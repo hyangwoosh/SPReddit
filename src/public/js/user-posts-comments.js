@@ -161,7 +161,8 @@ window.addEventListener('DOMContentLoaded', function () {
         `</td>
         </tr>
         <tr>
-        <td><a href='edit-post.html?post_id='` + data.result[i].post_id + `'><button id='edit-post-button'>Edit</button></a></td>
+        
+        <td><a href='edit-post.html?post_id=` + data.result[i].post_id + `'><button id='edit-post-button'>Edit</button></a></td>
         </tr>
         </tfoot>
         </table>
@@ -327,7 +328,7 @@ window.addEventListener('DOMContentLoaded', function () {
         `</td>
         </tr>
         <tr>
-        <td><a href='edit-comment.html?comment_id='` + data.result[i].comment_id + `'><button id='edit-comment-button'>Edit</button></a></td>
+        <td><a href='edit-comment.html?comment_id=` + data.result[i].comment_id + `'><button id='edit-comment-button'>Edit</button></a></td>
         </tr>
         </tfoot>
         </table>

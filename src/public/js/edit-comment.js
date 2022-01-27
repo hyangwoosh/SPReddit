@@ -42,7 +42,7 @@ window.addEventListener('DOMContentLoaded', function () {
       // console.log(data)
       console.log('Successfully updated comment');
       alert('Successfully updated comment');
-      window.location.replace('user-profile.html');
+      window.location.replace('userProfile.html');
     }).catch((error) => {
       // console.log(error)
       console.log('Error occurred while updating comment');
@@ -53,6 +53,44 @@ window.addEventListener('DOMContentLoaded', function () {
   // Delete comment
   const deleteCommentButton = document.getElementById('delete-comment-button');
   deleteCommentButton.onclick = function () {
+    // Get Comment Likable IDs
+    axios.get('http://localhost:8000/api/posts/likable/comment/' + commentID).then((response) => {
+      // console.log(response);
+      return response.data;
+    }).then((data) => {
+      // console.log(data);
+      console.log('Successfully retrieved comment likable ID');
+
+      // Delete Comment Likes
+      axios.delete('http://localhost:8000/api/posts/likes/' + data.result[0].likable_id).then((response) => {
+        // console.log(response)
+        return response.data;
+      }).then((data) => {
+        // console.log(data)
+        console.log('Successfully deleted comments likes');
+      }).catch((error) => {
+        // console.log(error)
+        console.log('Error occurred while deleting comments likes');
+      });
+
+    }).catch((error) => {
+      // console.log(error);
+      console.log('Error occurred while retrieving comment likable ID');
+    });
+
+    // Delete Comment Likable Object
+    axios.delete('http://localhost:8000/api/posts/likable/comment/' + commentID).then((response) => {
+      // console.log(response)
+      return response.data;
+    }).then((data) => {
+      // console.log(data)
+      console.log('Successfully deleted comment likable object');
+    }).catch((error) => {
+      // console.log(error)
+      console.log('Error occurred while deleting comment likable object');
+    });
+
+    // Delete Comment
     axios.delete('http://localhost:8000/api/posts/comments/' + commentID).then((response) => {
       // console.log(response)
       return response.data;
@@ -60,7 +98,7 @@ window.addEventListener('DOMContentLoaded', function () {
       // console.log(data)
       console.log('Successfully deleted comment');
       alert('Successfully deleted comment');
-      window.location.replace('user-profile.html');
+      window.location.replace('userProfile.html');
     }).catch((error) => {
       // console.log(error)
       console.log('Error occurred while deleting comment');

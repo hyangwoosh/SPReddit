@@ -20,6 +20,7 @@
     <script>
       var id = sessionStorage.getItem("id")
       var username = sessionStorage.getItem("username");
+<<<<<<< HEAD
       var password = sessionStorage.getItem("password");
 <<<<<<< HEAD
       document.getElementById("user-info").innerHTML = "Welcome " + username;
@@ -28,6 +29,10 @@
 >>>>>>> d44afce (Devin - Validation for register, Added Confirm Password and Added styling for login, register and delete page)
       console.log(username);
       console.log(password);
+=======
+      document.getElementById("user-info").innerHTML = "Welcome " + username;
+      console.log("User: " + username);
+>>>>>>> e24c071 (Fixed problems + improved delete posts/comments)
       if (id == null || username == null) {
         alert("You do not have access as you have not logged in")
         window.location.href = "../"
@@ -86,11 +91,6 @@
 
 >>>>>>> 2587f60 (Shine's changes)
     <div id="posts"></div>
-    
-      
-        <button id="add-post-button">Create Post</button>
-      
-    
 
   </div>
 </body>

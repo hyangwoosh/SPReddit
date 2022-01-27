@@ -150,6 +150,8 @@ window.addEventListener("DOMContentLoaded", function () {
     addPostButton.disabled = false;
   };
 
+=======
+>>>>>>> e24c071 (Fixed problems + improved delete posts/comments)
   // Retrieve all posts
   axios.get('http://localhost:8000/api/posts').then((response) => {
     // console.log(response.data);
@@ -312,7 +314,7 @@ window.addEventListener("DOMContentLoaded", function () {
         <br>`;
     };
   }).catch((error) => {
-    console.log(error);
+    // console.log(error);
     console.log('Error occurred while retrieving posts');
   });
 });
