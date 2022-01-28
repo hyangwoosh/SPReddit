@@ -1,0 +1,37 @@
+.PostContainer__Grid {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  padding: 10px 0px;
+  margin: 0px auto;
+  gap: 10px;
+
+  & > * {
+    display: flex;
+    flex: 3 3 30%;
+    margin: 0px;
+  }
+}
+
+.PostContainer__List {
+  display: flex;
+  flex-flow: row wrap;
+  padding: 10px 0px;
+  margin: 0px auto;
+  gap: 10px;
+
+  & > * {
+    display: flex;
+    margin: 0px auto;
+    flex: 1 1 100%;
+  }
+}
+
+@media (min-width: 453px) and (max-width: 768px) {
+  .PostContainer__Grid {
+    & > * {
+      flex: 1 1 100%;
+      padding: 5px 0px;
+    }
+  }
+}

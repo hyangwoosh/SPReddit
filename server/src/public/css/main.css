@@ -1,0 +1,159 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+* {
+  font-family: 'Roboto', sans-serif;
+}
+
+body {
+  background-color: lightgrey;
+}
+
+h1 {
+  text-align: center;
+  background-color: white;
+  margin-top: 1px;
+  padding-top: 2px;
+  font-size: 50px;
+}
+
+div#user-info {
+  text-align: center;
+  font-size: 35px;
+}
+
+div#nav-buttons {
+  margin-left: 150px;
+}
+
+button#profile-button, button#create-post-button, button#logoutacc {
+  display: block;
+  width: 380px;
+  margin-top: 50px;
+  padding: 12px;
+  border-radius: 5px;
+  outline: none;
+  color: black;
+  margin-left: 15px;
+  font-size: 20px;
+  display: inline-block;
+}
+
+button#add-post-button {
+  display: block;
+  width: 300px;
+  margin-top: 10px;
+  padding: 12px;
+  border-radius: 5px;
+  outline: none;
+  color: black;
+  margin-left: 50px;
+  font-size: 20px;
+}
+
+div#add-posts {
+  background-color: orange;
+    width: 400px;
+    margin-top: 150px;
+    padding: 50px 65px;
+    position: absolute;
+    transform: translate(-50%,-50%);
+    left: 50%;
+    top: 50%;
+    border-radius: 8px;
+    box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.40);
+}
+
+div#posts{
+  margin-top: 150px;
+}
+
+input {
+  display: block;
+  width: 380px;
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  outline: none;
+  color: black;
+  font-size: 15px;
+}
+
+i {
+  font-size: 0.7em;
+  color: #747474;
+}
+
+/* Stolen from https://codepen.io/shayhowe/pen/KikoF */
+table {
+  border-collapse: separate;
+  border-spacing: 0;
+  width: 100%;
+}
+
+th,
+td {
+  padding: 6px 15px;
+}
+
+th {
+  background: #42444e;
+  color: #fff;
+  text-align: left;
+}
+
+tr:first-child th:first-child {
+  border-top-left-radius: 6px;
+}
+
+tr:first-child th:last-child {
+  border-top-right-radius: 6px;
+}
+
+td {
+  border-right: 1px solid #c6c9cc;
+  border-bottom: 1px solid #c6c9cc;
+}
+
+td:first-child {
+  border-left: 1px solid #c6c9cc;
+}
+
+tr:nth-child(even) td {
+  background: #eaeaed;
+}
+
+tr:last-child td:first-child {
+  border-bottom-left-radius: 6px;
+}
+
+tr:last-child td:last-child {
+  border-bottom-right-radius: 6px;
+}
+
+.myPostAndCommentFlexbox {
+  display: flex;
+  margin-top: 50px;
+  width: 100%;
+}
+
+.flex-child {
+  flex: 1;
+  border: 2px solid black;
+  margin-right: 100px;
+  margin-left: 100px;
+}  
+
+.flex-child:first-child {
+  flex: 1;
+  margin-right: 100px;
+  margin-left: 100px;
+} 
+
+.myPageTableTitles {
+  margin-left: 16px;
+}
+
+.profDetailsDiv {
+  margin-top: 50px;
+  margin-left: 100px;
+}
