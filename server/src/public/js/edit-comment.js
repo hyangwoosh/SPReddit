@@ -1,7 +1,7 @@
 window.addEventListener('DOMContentLoaded', function () {
   // Retrieve specific comment
   const commentID = comment_id;
-  axios.get('http://localhost:8000/api/posts/comments/' + commentID).then((response) => {
+  axios.get('http://localhost:8000/api/posts/v1/comments/' + commentID).then((response) => {
     // console.log(response.data);
     return response.data;
   }).then((data) => {
@@ -33,7 +33,7 @@ window.addEventListener('DOMContentLoaded', function () {
   const updateCommentButton = document.getElementById('update-comment-button');
   updateCommentButton.onclick = function () {
     const newContent = document.getElementById('current-comment-content').value;
-    axios.put('http://localhost:8000/api/posts/comments/' + commentID, {
+    axios.put('http://localhost:8000/api/posts/v1/comments/' + commentID, {
       content: newContent,
     }).then((response) => {
       // console.log(response)
@@ -54,7 +54,7 @@ window.addEventListener('DOMContentLoaded', function () {
   const deleteCommentButton = document.getElementById('delete-comment-button');
   deleteCommentButton.onclick = function () {
     // Get Comment Likable IDs
-    axios.get('http://localhost:8000/api/posts/likable/comment/' + commentID).then((response) => {
+    axios.get('http://localhost:8000/api/posts/v1/likable/comment/' + commentID).then((response) => {
       // console.log(response);
       return response.data;
     }).then((data) => {
@@ -62,7 +62,7 @@ window.addEventListener('DOMContentLoaded', function () {
       console.log('Successfully retrieved comment likable ID');
 
       // Delete Comment Likes
-      axios.delete('http://localhost:8000/api/posts/likes/' + data.result[0].likable_id).then((response) => {
+      axios.delete('http://localhost:8000/api/posts/v1/likes/' + data.result[0].likable_id).then((response) => {
         // console.log(response)
         return response.data;
       }).then((data) => {
@@ -79,7 +79,7 @@ window.addEventListener('DOMContentLoaded', function () {
     });
 
     // Delete Comment Likable Object
-    axios.delete('http://localhost:8000/api/posts/likable/comment/' + commentID).then((response) => {
+    axios.delete('http://localhost:8000/api/posts/v1/likable/comment/' + commentID).then((response) => {
       // console.log(response)
       return response.data;
     }).then((data) => {
@@ -91,7 +91,7 @@ window.addEventListener('DOMContentLoaded', function () {
     });
 
     // Delete Comment
-    axios.delete('http://localhost:8000/api/posts/comments/' + commentID).then((response) => {
+    axios.delete('http://localhost:8000/api/posts/v1/comments/' + commentID).then((response) => {
       // console.log(response)
       return response.data;
     }).then((data) => {

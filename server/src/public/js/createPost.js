@@ -7,7 +7,7 @@ window.addEventListener('DOMContentLoaded', function () {
         const postContent = document.getElementById('post-content').value;
         addPostButton.disabled = true;
         alert('Please wait while we are creating your post');
-        axios.post('http://localhost:8000/api/posts', {
+        axios.post('http://localhost:8000/api/posts/v1', {
             creator: postCreator,
             title: postTitle,
             content: postContent,

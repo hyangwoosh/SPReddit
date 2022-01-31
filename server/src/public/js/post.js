@@ -1,7 +1,7 @@
 window.addEventListener('DOMContentLoaded', function () {
   // Retrieve specific post
   const postID = post_id;
-  axios.get('http://localhost:8000/api/posts/' + postID).then((response) => {
+  axios.get('http://localhost:8000/api/posts/v1/' + postID).then((response) => {
     // console.log(response.data);
     return response.data;
   }).then((data) => {
@@ -18,7 +18,7 @@ window.addEventListener('DOMContentLoaded', function () {
   });
 
   // Retrieve likes from post
-  axios.get('http://localhost:8000/api/posts/likes/post/' + postID).then((response) => {
+  axios.get('http://localhost:8000/api/posts/v1/likes/post/' + postID).then((response) => {
     // console.log(response.data.result);
     let totalLikes = 0;
     if (response.data.result.length == 0) {
@@ -48,7 +48,7 @@ window.addEventListener('DOMContentLoaded', function () {
   likePostButton.onclick = function () {
 
     // Retrieve likable ID from post ID
-    axios.get('http://localhost:8000/api/posts/likable/post/' + postID).then((response) => {
+    axios.get('http://localhost:8000/api/posts/v1/likable/post/' + postID).then((response) => {
       // console.log(response.data);
       return response.data;
     }).then((data) => {
@@ -59,7 +59,7 @@ window.addEventListener('DOMContentLoaded', function () {
       const likableID = data.result[0].likable_id;
       const action = 1;
 
-      axios.post('http://localhost:8000/api/posts/likes', {
+      axios.post('http://localhost:8000/api/posts/v1/likes', {
         user_id: userID,
         likable_id: likableID,
         action: action,
@@ -84,7 +84,7 @@ window.addEventListener('DOMContentLoaded', function () {
   dislikePostButton.onclick = function () {
 
     // Retrieve likable ID from post ID
-    axios.get('http://localhost:8000/api/posts/likable/post/' + postID).then((response) => {
+    axios.get('http://localhost:8000/api/posts/v1/likable/post/' + postID).then((response) => {
       // console.log(response.data);
       return response.data;
     }).then((data) => {
@@ -95,7 +95,7 @@ window.addEventListener('DOMContentLoaded', function () {
       const likableID = data.result[0].likable_id;
       const action = -1;
 
-      axios.post('http://localhost:8000/api/posts/likes', {
+      axios.post('http://localhost:8000/api/posts/v1/likes', {
         user_id: userID,
         likable_id: likableID,
         action: action,
@@ -120,7 +120,7 @@ window.addEventListener('DOMContentLoaded', function () {
   resetPostLikeButton.onclick = function () {
 
     // Retrieve likable ID from post ID
-    axios.get('http://localhost:8000/api/posts/likable/post/' + postID).then((response) => {
+    axios.get('http://localhost:8000/api/posts/v1/likable/post/' + postID).then((response) => {
       // console.log(response.data);
       return response.data;
     }).then((data) => {
@@ -131,7 +131,7 @@ window.addEventListener('DOMContentLoaded', function () {
       const likableID = data.result[0].likable_id;
       const action = 0;
 
-      axios.post('http://localhost:8000/api/posts/likes', {
+      axios.post('http://localhost:8000/api/posts/v1/likes', {
         user_id: userID,
         likable_id: likableID,
         action: action,
@@ -161,7 +161,7 @@ window.addEventListener('DOMContentLoaded', function () {
     const commentContent = document.getElementById('comment-content').value;
     addCommentButton.disabled = true;
     alert('Please wait while we are creating your comment');
-    axios.post('http://localhost:8000/api/posts/comments', {
+    axios.post('http://localhost:8000/api/posts/v1/comments', {
       post_id: postID,
       creator: commentCreator,
       content: commentContent,
@@ -182,7 +182,7 @@ window.addEventListener('DOMContentLoaded', function () {
   };
 
   // Retrieve all comments from post
-  axios.get('http://localhost:8000/api/posts/comments/posts/' + postID).then((response) => {
+  axios.get('http://localhost:8000/api/posts/v1/comments/posts/' + postID).then((response) => {
     // console.log(response.data);
     return response.data;
   }).then((data) => {
@@ -190,7 +190,7 @@ window.addEventListener('DOMContentLoaded', function () {
     console.log('Successfully retrieved comments');
     for (let i = 0; i < data.result.length; i++) {
 
-      axios.get('http://localhost:8000/api/posts/likes/comment/' + data.result[i].comment_id).then((response) => {
+      axios.get('http://localhost:8000/api/posts/v1/likes/comment/' + data.result[i].comment_id).then((response) => {
         // console.log(response.data);
         let totalLikes = 0;
         if (response.data.result.length == 0) {
@@ -235,7 +235,7 @@ window.addEventListener('DOMContentLoaded', function () {
         // Like (+) button
         `<a onClick="
 
-        axios.get('http://localhost:8000/api/posts/likable/comment/' + ` + data.result[i].comment_id + `).then((response) => {
+        axios.get('http://localhost:8000/api/posts/v1/likable/comment/' + ` + data.result[i].comment_id + `).then((response) => {
           return response.data;
         }).then((data) => {
           console.log('Successfully retrieved likable ID');
@@ -244,7 +244,7 @@ window.addEventListener('DOMContentLoaded', function () {
           const likableID = data.result[0].likable_id;
           const action = 1;
 
-          axios.post('http://localhost:8000/api/posts/likes', {
+          axios.post('http://localhost:8000/api/posts/v1/likes', {
             user_id: userID,
             likable_id: likableID,
             action: action,
@@ -269,7 +269,7 @@ window.addEventListener('DOMContentLoaded', function () {
         // Dislike (-) button
         `<a onClick="
 
-        axios.get('http://localhost:8000/api/posts/likable/comment/' + ` + data.result[i].comment_id + `).then((response) => {
+        axios.get('http://localhost:8000/api/posts/v1/likable/comment/' + ` + data.result[i].comment_id + `).then((response) => {
           return response.data;
         }).then((data) => {
           console.log('Successfully retrieved likable ID');
@@ -278,7 +278,7 @@ window.addEventListener('DOMContentLoaded', function () {
           const likableID = data.result[0].likable_id;
           const action = -1;
 
-          axios.post('http://localhost:8000/api/posts/likes', {
+          axios.post('http://localhost:8000/api/posts/v1/likes', {
             user_id: userID,
             likable_id: likableID,
             action: action,
@@ -302,7 +302,7 @@ window.addEventListener('DOMContentLoaded', function () {
         // Reset button
         `<a onClick="
 
-        axios.get('http://localhost:8000/api/posts/likable/comment/' + ` + data.result[i].comment_id + `).then((response) => {
+        axios.get('http://localhost:8000/api/posts/v1/likable/comment/' + ` + data.result[i].comment_id + `).then((response) => {
           return response.data;
         }).then((data) => {
           console.log('Successfully retrieved likable ID');
@@ -311,7 +311,7 @@ window.addEventListener('DOMContentLoaded', function () {
           const likableID = data.result[0].likable_id;
           const action = 0;
 
-          axios.post('http://localhost:8000/api/posts/likes', {
+          axios.post('http://localhost:8000/api/posts/v1/likes', {
             user_id: userID,
             likable_id: likableID,
             action: action,
