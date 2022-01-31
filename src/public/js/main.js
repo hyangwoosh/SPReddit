@@ -175,16 +175,32 @@ window.addEventListener("DOMContentLoaded", function () {
         return response.data;
       }).then((data) => {
         // console.log(data);
-        console.log('Successfully retrieved post likes');
-        document.getElementById('post-likes-' + (i + 1) + '').innerHTML += data[0];
-        document.getElementById('users-post-likes-' + (i + 1) + '').innerHTML += 'Rated by ' + data[1] + ' user(s)';
-      }).catch((error) => {
-        // console.log(error);
-        console.log('Error occurred while retrieving post likes');
-      });
+        console.log('Successfully retrieved posts');
+        for (let i = 0; i < data.result.length; i++) {
+            axios.get('http://localhost:8000/api/posts/likes/post/' + data.result[i].post_id).then((response) => {
+                // console.log(response.data);
+                let totalLikes = 0;
+                if (response.data.result.length == 0) {
+                    totalLikes = 0;
+                } else {
+                    for (let i = 0; i < response.data.result.length; i++) {
+                        totalLikes += response.data.result[i].action;
+                    }
+                }
+                response.data = [totalLikes, response.data.result.length];
+                return response.data;
+            }).then((data) => {
+                // console.log(data);
+                console.log('Successfully retrieved post likes');
+                document.getElementById('post-likes-' + (i + 1) + '').innerHTML += data[0];
+                document.getElementById('users-post-likes-' + (i + 1) + '').innerHTML += 'Rated by ' + data[1] + ' user(s)';
+            }).catch((error) => {
+                // console.log(error);
+                console.log('Error occurred while retrieving post likes');
+            });
 
-      document.getElementById('posts').innerHTML +=
-        `<table>
+            document.getElementById('posts').innerHTML +=
+                `<table>
         <thead>
         <tr>
         <th id='post-id' hidden>` + data.result[i].post_id + `</th>
@@ -203,8 +219,8 @@ window.addEventListener("DOMContentLoaded", function () {
         <tr>
         <td>` +
 
-        // Like (+) button
-        `<a onClick="
+                // Like (+) button
+                `<a onClick="
 
         axios.get('http://localhost:8000/api/posts/likable/post/' + ` + data.result[i].post_id + `).then((response) => {
           return response.data;
@@ -234,11 +250,11 @@ window.addEventListener("DOMContentLoaded", function () {
 
         "><button id='post-like-button'>+</button></a>` +
 
-        // Number of likes
-        `<div id='post-likes-` + (i + 1) + `'></div>` +
+                // Number of likes
+                `<div id='post-likes-` + (i + 1) + `'></div>` +
 
-        // Dislike (-) button
-        `<a onClick="
+                // Dislike (-) button
+                `<a onClick="
 
         axios.get('http://localhost:8000/api/posts/likable/post/' + ` + data.result[i].post_id + `).then((response) => {
           return response.data;
@@ -270,8 +286,8 @@ window.addEventListener("DOMContentLoaded", function () {
 
         <br>` +
 
-        // Reset button
-        `<a onClick="
+                // Reset button
+                `<a onClick="
 
         axios.get('http://localhost:8000/api/posts/likable/post/' + ` + data.result[i].post_id + `).then((response) => {
           return response.data;
@@ -301,10 +317,10 @@ window.addEventListener("DOMContentLoaded", function () {
 
         "><button id='post-like-reset-button'>Reset</button></a>` +
 
-        // Number of users that liked
-        `<div id='users-post-likes-` + (i + 1) + `'></div>` +
+                // Number of users that liked
+                `<div id='users-post-likes-` + (i + 1) + `'></div>` +
 
-        `</td>
+                `</td>
         </tr>
         <tr>
         <td><a href='post.html?post_id=` + data.result[i].post_id + `'><button id='view-post-button'>View post</button></a></td>
@@ -312,6 +328,7 @@ window.addEventListener("DOMContentLoaded", function () {
         </tfoot>
         </table>
         <br>`;
+<<<<<<< HEAD
     };
   }).catch((error) => {
     // console.log(error);
@@ -319,3 +336,11 @@ window.addEventListener("DOMContentLoaded", function () {
   });
 });
 >>>>>>> 73b5445 (Likes feature (Unfinished))
+=======
+        };
+    }).catch((error) => {
+        // console.log(error);
+        console.log('Error occurred while retrieving posts');
+    });
+});
+>>>>>>> e1eb23e (login w jwt and authenticate)

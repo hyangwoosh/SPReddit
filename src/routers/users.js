@@ -1,12 +1,16 @@
+require('dotenv').config();
 const router = require('express').Router();
 const connection = require('../database/database');
+const jwt = require('jsonwebtoken'); 
 
 // login user
 router.post('/login', function (req, res) {
   const logemail = req.body.email;
   const logpassword = req.body.password;
 
-  const sql = 'SELECT * FROM users WHERE email = ($1) and password = ($2)';
+  const email = { email: logemail };
+
+  const sql = "SELECT * FROM users WHERE email = ($1) and password = ($2)";
   const values = [logemail, logpassword];
 
   connection.query(sql, values, (error, result) => {
@@ -20,27 +24,26 @@ router.post('/login', function (req, res) {
           'message': `Incorrect Credentials`
         });
       } else {
-        res.send({
-          'message': `${result.rows[0].username}`,
-          'id': `${result.rows[0].id}`,
-          'password': `${result.rows[0].password}`,
-        });
+          const jwt = generateAccessToken(email);
+          res.send({ "jwt": jwt });
       }
     }
   });
 });
 
-// register user
-router.post('/register', function (req, res) {
-  let regusername = req.body.username;
-  const regemail = req.body.email;
-  const regpassword = req.body.password;
+function generateAccessToken(email) {
+    return jwt.sign(email, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '1800s'})
+}
 
-  if (regusername == 'user1') {
-    regusername = null;
-  }
-  const sql = 'INSERT INTO users (username, email, password) VALUES ($1,$2,$3)';
-  const values = [regusername, regemail, regpassword];
+//register user
+router.post('/register', function (req, res) {
+  var regusername = req.body.username;
+  var regemail = req.body.email;
+  var regpassword = req.body.password;
+  var regrole = req.body.role;
+  
+  const sql = "INSERT INTO users (username, email, password, role) VALUES ($1,$2,$3,$4)";
+  const values = [regusername, regemail, regpassword, regrole];
 
   connection.query(sql, values, (error, result) => {
     if (error != null) {
@@ -60,7 +63,11 @@ router.post('/register', function (req, res) {
   });
 });
 
-// delete user
+router.delete('/logout', (req, res) => {
+  
+})
+
+//delete user
 router.delete('/delete', function (req, res) {
   const deletename = req.query.username;
   const deletepw = req.query.password;

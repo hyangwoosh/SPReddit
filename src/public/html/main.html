@@ -18,7 +18,7 @@
     <div id="user-info"></div>
 
     <script>
-      var id = sessionStorage.getItem("id")
+      var jwt = sessionStorage.getItem("jwt")
       var username = sessionStorage.getItem("username");
 <<<<<<< HEAD
       var password = sessionStorage.getItem("password");
@@ -84,8 +84,10 @@
 
 =======
     <div id="nav-buttons">
-      <a href="userProfile.html"><button id="profile-button">Profile</button></a>
-      <a href="createPost.html"><button id="create-post-button">Create Post</button></a>
+      <a href="profile-page.html"><button id="profile-button">Profile</button></a>
+
+      <a href='user-posts-comments.html'><button id='user-profile-button'>Posts and Comments</button></a>
+
       <button id="logoutacc" onclick="window.location.href='../'">Logout</button>
     </div>
 
