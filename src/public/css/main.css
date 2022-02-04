@@ -26,12 +26,16 @@ div#nav-buttons {
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 button#profile-button, button#create-post-button, button#logoutacc {
 =======
 button#profile-button,
 button#user-profile-button,
 button#logoutacc {
 >>>>>>> 3f850aa (Minor changes)
+=======
+button#profile-button, button#create-post-button, button#logoutacc {
+>>>>>>> 5aee464 (Revert "Merge branch 'main' of https://github.com/LiauYanBin/SPReddit_YanBin into main")
   display: block;
   width: 380px;
   margin-top: 50px;
@@ -59,6 +63,9 @@ button#add-post-button {
 div#add-posts {
   background-color: orange;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 5aee464 (Revert "Merge branch 'main' of https://github.com/LiauYanBin/SPReddit_YanBin into main")
     width: 400px;
     margin-top: 150px;
     padding: 50px 65px;
@@ -72,6 +79,7 @@ div#add-posts {
 
 div#posts{
   margin-top: 150px;
+<<<<<<< HEAD
 =======
   width: 400px;
   margin-top: 150px;
@@ -87,6 +95,8 @@ div#posts{
 div#posts {
   margin-top: 500px;
 >>>>>>> 3f850aa (Minor changes)
+=======
+>>>>>>> 5aee464 (Revert "Merge branch 'main' of https://github.com/LiauYanBin/SPReddit_YanBin into main")
 }
 
 input {

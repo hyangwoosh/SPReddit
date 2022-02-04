@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <title>Register Account</title>
+  <link href="../css/register.css" rel="stylesheet" />
+  <script src="../js/register.js" type="text/javascript"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+</head>
+
+<body>
+
+  <div>
+    <h1><a style="text-decoration:none" href="main.html">SPReddit</a></h1>
+    <div>
+      <h2>Register</h2>
+      <form>
+        <label>Username:</label>
+        <input type="text" placeholder="Username" id="register-username" required><br><br>
+
+        <label>Email:</label>
+        <input type="text" placeholder="Email" id="register-email" required><br><br>
+
+        <label>Password:</label>
+        <input type="password" placeholder="Password" id="register-password" required><br><br>
+
+        <label>Confirm Password:</label>
+        <input type="password" placeholder="Confirm Password" id="cnfrm-password" required><br><br>
+
+        <p id="confirmation"></p>
+
+        <input type="button" id="registeracc" value="Register">
+
+        <button id="back" onclick="window.location.href='../'">Back</button>
+      </form>
+
+    </div>
+
+  </div>
+
+  </div>
+
+</body>
+
+</html>
