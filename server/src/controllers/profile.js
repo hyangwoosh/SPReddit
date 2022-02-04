@@ -5,31 +5,20 @@ const jwt = require('jsonwebtoken');
 
 // GET user profile
 router.get('/getinfo', function(req, res) {
-  var jwtfetch = req.query.jwt
+  var bearerToken = req.headers.authorization;
 
-  jwt.verify(jwtfetch, process.env.ACCESS_TOKEN_SECRET, function(err, jwt) {
+  const jwtToken = bearerToken.split("Bearer ")[1]
+  jwt.verify(jwtToken, process.env.ACCESS_TOKEN_SECRET, function(err, jwtTokenDecrypted) {
+    if (err) {
+      // logout here 
+      res.status(401).send("Message")
+    } else {
+      // read data from the jwt token
+      const { username, email } = jwtTokenDecrypted;
+
+      res.status(200).send({ username, email });
+    }
     
-    const sql = "SELECT * FROM users WHERE email = ($1)";
-    const values = [jwt.email];
-
-    connection.query(sql, values, (error, result) => {
-
-      if (error != null) {
-  
-        if (error) {
-          res.send(error);
-        }
-      } else if (result != null) {
-  
-        if (result.rows.length == 0) {
-  
-          res.send({ "message": `Information not found` });
-        } else {
-
-            res.send({ "username": result.rows[0].username });
-        }
-      }
-    })
 
   });
 })
@@ -101,7 +90,6 @@ router.put('/updateUser/:id', function (req, res) {
 
 router.get('/userpost', function (req, res) {
   var id = req.params.id;
-  Authorization: Bearer
 
   const getUsersQuery = {
     text: 'SELECT * FROM users WHERE id = $1;',

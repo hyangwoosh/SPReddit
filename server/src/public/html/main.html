@@ -17,19 +17,30 @@
 
     <div id="user-info"></div>
 
-    <script>
-      var id = sessionStorage.getItem("id")
-      var username = sessionStorage.getItem("username");
-      document.getElementById("user-info").innerHTML = "Welcome " + username;
-      console.log("User: " + username);
-      if (id == null || username == null) {
+    <script defer>
+      var jwt = sessionStorage.getItem("jwt")
+
+      if (jwt == null) {
         alert("You do not have access as you have not logged in")
         window.location.href = "../"
       }
+
+      axios.get('http://localhost:8000/api/profile/getinfo', { headers: { "Authorization": `Bearer ${jwt}` } })
+        .then(function (res) {
+          console.log(res.data);
+          document.getElementById("user-info").innerHTML = "Welcome " + res.data.username;
+
+        })
+        .catch(function (err) {
+          console.log(err);
+        })
+
+
+
     </script>
 
     <div id="nav-buttons">
-      <a href="userProfile.html"><button id="profile-button">Profile</button></a>
+      <a href="profile-page.html"><button id="profile-button">Profile</button></a>
       <a href="createPost.html"><button id="create-post-button">Create Post</button></a>
       <button id="logoutacc" onclick="window.location.href='../'">Logout</button>
     </div>

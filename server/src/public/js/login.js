@@ -7,7 +7,7 @@ window.addEventListener("DOMContentLoaded", function () {
       var logemail = document.getElementById("login-email").value;
       var logpassword = document.getElementById("login-password").value;
 
-      axios.post('/api/users/login', {
+      axios.post('http://localhost:8000/api/users/login', {
               email: logemail,
               password: logpassword
       })
@@ -17,10 +17,8 @@ window.addEventListener("DOMContentLoaded", function () {
               alert(res.data.message);
           }
           else {
-              console.log(res.data.jwt);
               sessionStorage.setItem("jwt", res.data.jwt);
               window.location.href = "../html/main.html"
-              
           }
           
         })

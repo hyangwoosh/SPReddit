@@ -16,10 +16,8 @@
         <h1><a style="text-decoration:none" href="main.html">SPReddit</a></h1>
 
         <script>
-            var id = sessionStorage.getItem("id")
-            var username = sessionStorage.getItem("username");
-            console.log("User: " + username);
-            if (id == null || username == null) {
+            var jwt = sessionStorage.getItem("jwt")
+            if (jwt == null) {
                 alert("You do not have access as you have not logged in")
                 window.location.href = "../"
             }

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>SP Reddit</title>
+    <link href="../css/main.css" rel="stylesheet" />
+    +
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+</head>
+
+<body>
+    <div>
+
+        <h1>SP Reddit</h1>
+
+        <h2>Profile</h2>
+
+        <div id="user-info"></div>
+
+        <script defer>
+            var jwt = sessionStorage.getItem("jwt");
+
+            if (jwt == null) {
+                alert("You do not have access as you have not logged in")
+                window.location.href = "../"
+            }
+
+            axios.get('http://localhost:8000/api/profile/getinfo', { headers: { "Authorization": `Bearer ${jwt}` } })
+                .then(function (res) {
+                    console.log(res.data);
+                    document.getElementById("user-info").innerHTML = `Name: ${res.data.username}<br>Email: ${res.data.email}`;
+
+                })
+                .catch(function (err) {
+                    console.log(err);
+
+                    alert("you do not have access")
+                    window.location.href = "../"
+                    window.sessionStorage.clear();
+                })
+
+        </script>
+
+
+
+        <button id="deleteuser" onclick="window.location.href='delete-user.html'">Delete Account</button>
+
+
+    </div>
+</body>
+
+</html>

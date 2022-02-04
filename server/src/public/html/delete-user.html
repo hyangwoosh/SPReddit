@@ -13,10 +13,8 @@
 <body>
 
   <script>
-    var id = sessionStorage.getItem("id")
-    var username = sessionStorage.getItem("username");
-    console.log("User: " + username);
-    if (id == null || username == null) {
+    var jwt = sessionStorage.getItem("jwt")
+    if (jwt == null) {
       alert("You do not have access as you have not logged in")
       window.location.href = "../"
     }

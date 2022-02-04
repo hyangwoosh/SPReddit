@@ -1,7 +1,7 @@
 require('dotenv').config();
 const router = require('express').Router();
 const connection = require('../database/database');
-const jwt = require('jsonwebtoken'); 
+const jwt = require('jsonwebtoken');
 
 // Get User By Id
 router.get('/:id', async (req, res) => {
@@ -88,30 +88,34 @@ router.post('/login', function (req, res) {
   const logpassword = req.body.password;
 
   const email = { email: logemail };
+  console.log("login function called");
 
   const sql = "SELECT * FROM users WHERE email = ($1) and password = ($2)";
   const values = [logemail, logpassword];
 
   connection.query(sql, values, (error, result) => {
-    if (error != null) {
-      if (error) {
-        res.send(error);
-      }
-    } else if (result != null) {
-      if (result.rows.length == 0) {
-        res.send({
+    if (error) {
+      console.log(error);
+      res.status(401).send(error);
+    } else {
+      if (result.rows.length === 0) {
+        res.status(401).send({
           'message': `Incorrect Credentials`
         });
       } else {
-          const jwt = generateAccessToken(email);
-          res.send({ "jwt": jwt });
+        const user = result.rows[0];
+        const jwt = generateAccessToken(user.email, user.username, user.role);
+
+        res.status(200).send({
+          jwt,
+        });
       }
     }
   });
 });
 
-function generateAccessToken(email) {
-    return jwt.sign(email, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '1800s'})
+function generateAccessToken(email, username, role) {
+  return jwt.sign({ email, username, role }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '1800s' })
 }
 
 //register user
@@ -120,7 +124,7 @@ router.post('/register', function (req, res) {
   var regemail = req.body.email;
   var regpassword = req.body.password;
   var regrole = req.body.role;
-  
+
   const sql = "INSERT INTO users (username, email, password, role) VALUES ($1,$2,$3,$4)";
   const values = [regusername, regemail, regpassword, regrole];
 
@@ -143,7 +147,7 @@ router.post('/register', function (req, res) {
 });
 
 router.delete('/logout', (req, res) => {
-  
+
 })
 
 //delete user
